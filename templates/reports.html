@@ -14,15 +14,15 @@
             <div class="text-secondary small">Stored climate simulations, multi-factor audit logs, and downloadable PDF reports.</div>
         </div>
 
-        <div>
-            <a href="{{ url_for('simulator.simulator') }}" class="btn btn-climatex-glow btn-sm">
+        <div class="w-100 w-md-auto">
+            <a href="{{ url_for('simulator.simulator') }}" class="btn btn-climatex-glow btn-sm w-100">
                 <i class="bi bi-plus-circle"></i> Create New Simulation
             </a>
         </div>
     </div>
 
     <!-- Scenarios History Table -->
-    <div class="climatex-card mb-4 p-4">
+    <div class="climatex-card mb-4 p-3 p-sm-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-bold text-white mb-0"><i class="bi bi-database-check text-info me-2"></i> Saved Scenarios Database ({{ scenarios|length }})</h5>
             <span class="badge bg-secondary small">SQLite / PostgreSQL Schema</span>

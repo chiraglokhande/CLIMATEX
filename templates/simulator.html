@@ -14,10 +14,10 @@
             <p class="text-secondary small mb-0">Change environmental conditions and explore potential impacts on roads, hospitals, shelters, and citizens.</p>
         </div>
 
-        <div class="d-flex align-items-center gap-3">
-            <div class="d-flex align-items-center gap-2">
+        <div class="page-header-controls">
+            <div class="d-flex align-items-center gap-2 flex-grow-1 flex-sm-grow-0">
                 <label for="simLocation" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger"></i> Target City:</label>
-                <select id="simLocation" class="form-select form-select-sm bg-dark text-white border-secondary" style="min-width: 150px;">
+                <select id="simLocation" class="form-select form-select-sm bg-dark text-white border-secondary flex-grow-1" style="min-width: 150px;">
                     {% for loc in locations %}
                     <option value="{{ loc.name }}" {% if loc.name == location %}selected{% endif %}>{{ loc.name }}</option>
                     {% endfor %}
@@ -49,7 +49,7 @@
     <div class="row g-4 mb-4">
         <!-- Input Sliders Column -->
         <div class="col-lg-6">
-            <div class="climatex-card h-100 p-4">
+            <div class="climatex-card h-100 p-3 p-sm-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold text-white mb-0"><i class="bi bi-sliders text-info me-2"></i> Environmental Control Sliders</h5>
                     <button type="button" class="btn btn-sm btn-outline-secondary py-0" onclick="resetToBaseline()">Reset to Baseline</button>

@@ -14,13 +14,15 @@
             <div class="text-secondary small">Real-time overlay of flood zones, road accessibility corridors, hospital buffers, and AQI dispersion.</div>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-            <label for="mapCitySelector" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger"></i> Target City:</label>
-            <select id="mapCitySelector" class="form-select form-select-sm bg-dark text-white border-secondary" style="min-width: 140px;">
-                {% for loc in locations %}
-                <option value="{{ loc.name }}" {% if loc.name == location %}selected{% endif %}>{{ loc.name }}</option>
-                {% endfor %}
-            </select>
+        <div class="page-header-controls">
+            <div class="d-flex align-items-center gap-2 flex-grow-1 flex-sm-grow-0">
+                <label for="mapCitySelector" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger"></i> Target City:</label>
+                <select id="mapCitySelector" class="form-select form-select-sm bg-dark text-white border-secondary flex-grow-1" style="min-width: 140px;">
+                    {% for loc in locations %}
+                    <option value="{{ loc.name }}" {% if loc.name == location %}selected{% endif %}>{{ loc.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <button class="btn btn-climatex-primary btn-sm text-nowrap" onclick="applyMapDeluge()">
                 <i class="bi bi-cloud-rain-heavy-fill"></i> Test +50% Rainfall
             </button>
@@ -32,7 +34,7 @@
         <!-- Interactive Leaflet Map -->
         <div class="col-lg-9">
             <div class="climatex-card p-2 position-relative">
-                <div id="map" style="height: 620px; width: 100%;"></div>
+                <div id="map"></div>
 
                 <!-- Floating Map Legend -->
                 <div class="position-absolute bottom-0 start-0 m-4 p-3 map-control-panel" style="z-index: 999; max-width: 280px;">

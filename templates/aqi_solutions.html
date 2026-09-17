@@ -14,14 +14,16 @@
             <div class="text-secondary small">Deep attribution of emission sources and evidence-backed decision support protocols.</div>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-            <label for="solCitySelector" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Location:</label>
-            <select id="solCitySelector" class="form-select form-select-sm bg-dark text-white border-secondary" style="min-width: 140px;">
-                <option value="Pune" {% if location == 'Pune' %}selected{% endif %}>Pune</option>
-                <option value="Mumbai" {% if location == 'Mumbai' %}selected{% endif %}>Mumbai</option>
-                <option value="Nashik" {% if location == 'Nashik' %}selected{% endif %}>Nashik</option>
-                <option value="Nagpur" {% if location == 'Nagpur' %}selected{% endif %}>Nagpur</option>
-            </select>
+        <div class="page-header-controls">
+            <div class="d-flex align-items-center gap-2 flex-grow-1 flex-sm-grow-0">
+                <label for="solCitySelector" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Location:</label>
+                <select id="solCitySelector" class="form-select form-select-sm bg-dark text-white border-secondary flex-grow-1" style="min-width: 140px;">
+                    <option value="Pune" {% if location == 'Pune' %}selected{% endif %}>Pune</option>
+                    <option value="Mumbai" {% if location == 'Mumbai' %}selected{% endif %}>Mumbai</option>
+                    <option value="Nashik" {% if location == 'Nashik' %}selected{% endif %}>Nashik</option>
+                    <option value="Nagpur" {% if location == 'Nagpur' %}selected{% endif %}>Nagpur</option>
+                </select>
+            </div>
         </div>
     </div>
 
