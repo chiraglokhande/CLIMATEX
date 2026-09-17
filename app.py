@@ -1,13 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from config import Config
 from models.database import db, init_db
 from models.models import Location, User, Scenario, ScenarioResult
 from routes import register_blueprints
 from services.simulation_engine import SimulationEngine
 import json
+import os
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    static_folder = os.path.join(base_dir, 'static')
+    if not os.path.exists(static_folder):
+        static_folder = os.path.join(base_dir, 'public', 'static')
+
+    app = Flask(__name__, static_folder=static_folder, static_url_path='/static')
     app.config.from_object(config_class)
 
     # Initialize Database
@@ -19,6 +25,17 @@ def create_app(config_class=Config):
     # Seed Database on Startup if needed
     with app.app_context():
         seed_database()
+
+    # Explicit route for /css/
+    @app.route('/css/<path:filename>')
+    def serve_css(filename):
+        for candidate in [
+            os.path.join(base_dir, 'public', 'css'),
+            os.path.join(base_dir, 'static', 'css')
+        ]:
+            if os.path.exists(os.path.join(candidate, filename)):
+                return send_from_directory(candidate, filename, mimetype='text/css')
+        return "Not found", 404
 
     @app.errorhandler(404)
     def page_not_found(e):

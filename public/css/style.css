@@ -1,0 +1,758 @@
+/* ==========================================================
+   CLIMATEX - AI Climate Risk & Environmental Decision Support
+   Modern Climate-Tech Design System (Light & Dark Theme)
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root, [data-theme="dark"] {
+    --bg-main: #0B1120;
+    --bg-surface: #111C35;
+    --bg-surface-elevated: #162447;
+    --bg-card: rgba(17, 28, 53, 0.85);
+    --bg-box: rgba(15, 23, 42, 0.75);
+    --bg-box-subtle: rgba(255, 255, 255, 0.03);
+    --bg-nav: rgba(11, 17, 32, 0.9);
+    --bg-input: #1E293B;
+    --border-color: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(56, 189, 248, 0.4);
+    
+    /* Primary Climate Accents */
+    --accent-cyan: #06B6D4;
+    --accent-emerald: #10B981;
+    --accent-blue: #3B82F6;
+    --accent-purple: #8B5CF6;
+    
+    /* Risk Spectrum */
+    --risk-low: #10B981;
+    --risk-medium: #F59E0B;
+    --risk-high: #EF4444;
+    --risk-critical: #8B5CF6;
+    
+    /* Text Hierarchy */
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --heading-color: #FFFFFF;
+    
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+    
+    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --shadow-glow-cyan: 0 0 25px rgba(6, 182, 212, 0.25);
+    --shadow-glow-emerald: 0 0 25px rgba(16, 185, 129, 0.25);
+    --shadow-glow-danger: 0 0 25px rgba(239, 68, 68, 0.25);
+    
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --bg-gradient-1: radial-gradient(at 10% 20%, rgba(6, 182, 212, 0.08) 0px, transparent 50%);
+    --bg-gradient-2: radial-gradient(at 90% 80%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+    --gauge-gradient: radial-gradient(circle at center, rgba(6, 182, 212, 0.14) 0%, rgba(17, 28, 53, 0.85) 70%);
+}
+
+[data-theme="light"] {
+    --bg-main: #F1F5F9;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-box: #F8FAFC;
+    --bg-box-subtle: #F1F5F9;
+    --bg-nav: rgba(255, 255, 255, 0.95);
+    --bg-input: #E2E8F0;
+    --border-color: rgba(15, 23, 42, 0.12);
+    --border-hover: rgba(2, 132, 199, 0.5);
+    
+    /* Primary Climate Accents */
+    --accent-cyan: #0284C7;
+    --accent-emerald: #059669;
+    --accent-blue: #2563EB;
+    --accent-purple: #7C3AED;
+    
+    /* Risk Spectrum */
+    --risk-low: #059669;
+    --risk-medium: #D97706;
+    --risk-high: #DC2626;
+    --risk-critical: #7C3AED;
+    
+    /* Text Hierarchy */
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --heading-color: #0F172A;
+    
+    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-glow-cyan: 0 0 20px rgba(2, 132, 199, 0.18);
+    --shadow-glow-emerald: 0 0 20px rgba(5, 150, 105, 0.18);
+    --shadow-glow-danger: 0 0 20px rgba(220, 38, 38, 0.18);
+    
+    --bg-gradient-1: radial-gradient(at 10% 20%, rgba(2, 132, 199, 0.05) 0px, transparent 50%);
+    --bg-gradient-2: radial-gradient(at 90% 80%, rgba(5, 150, 105, 0.05) 0px, transparent 50%);
+    --gauge-gradient: radial-gradient(circle at center, rgba(2, 132, 199, 0.08) 0%, rgba(248, 250, 252, 0.95) 70%);
+}
+
+/* Theme Adaptive Boxes */
+.theme-box {
+    background: var(--bg-box) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+}
+
+.theme-box-subtle {
+    background: var(--bg-box-subtle) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+}
+
+.theme-card-accent {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-image: var(--bg-gradient-1), var(--bg-gradient-2);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography & Links */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--heading-color);
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+a:hover {
+    color: var(--accent-blue);
+}
+
+/* Glassmorphism Cards */
+.climatex-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-subtle);
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.climatex-card:hover {
+    border-color: var(--border-hover);
+}
+
+/* Navbar */
+.climatex-nav {
+    background: var(--bg-nav);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.85rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--heading-color) !important;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0B1120;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--heading-color) !important;
+    background: rgba(125, 211, 252, 0.1);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--heading-color);
+}
+
+/* Buttons */
+.btn-climatex-primary {
+    background: linear-gradient(135deg, #0284C7 0%, #059669 100%);
+    color: #FFF !important;
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-climatex-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+    color: #FFF !important;
+}
+
+.btn-climatex-glow {
+    background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
+    color: #0B1120 !important;
+    font-weight: 700;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    box-shadow: var(--shadow-glow-cyan);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-climatex-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(6, 182, 212, 0.5);
+    color: #0B1120 !important;
+}
+
+.btn-climatex-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-smooth);
+}
+
+.btn-climatex-outline:hover {
+    background: rgba(125, 211, 252, 0.1);
+    border-color: var(--border-hover);
+    color: var(--heading-color);
+}
+
+/* Risk Badges */
+.badge-risk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-low, .badge-good, .badge-satisfactory {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--risk-low);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-medium, .badge-moderate {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--risk-medium);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-high, .badge-poor {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--risk-high);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-critical, .badge-severe, .badge-very-poor {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--risk-critical);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+/* Metric Cards */
+.metric-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    border-left: 3px solid var(--accent-cyan);
+}
+
+.metric-card.accent-emerald { border-left-color: var(--accent-emerald); }
+.metric-card.accent-amber { border-left-color: var(--risk-medium); }
+.metric-card.accent-rose { border-left-color: var(--risk-high); }
+.metric-card.accent-purple { border-left-color: var(--risk-critical); }
+
+.metric-title {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin: 0.2rem 0;
+}
+
+.metric-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Sliders & Simulator Inputs */
+.slider-container {
+    background: var(--bg-box);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.slider-container:hover {
+    border-color: var(--border-hover);
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+.slider-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.slider-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--accent-cyan);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.form-range {
+    height: 6px;
+    background: var(--bg-input);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    border: 2px solid #FFF;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.form-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Preset Pills */
+.preset-btn {
+    background: var(--bg-box);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preset-btn:hover, .preset-btn.active {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: var(--accent-cyan);
+    color: var(--heading-color);
+}
+
+/* Before / After Comparison */
+.comparison-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.comparison-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-header-col {
+    padding: 0.85rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.comparison-header-col.current {
+    background: var(--bg-box);
+    color: var(--text-secondary);
+}
+
+.comparison-header-col.simulated {
+    background: rgba(6, 182, 212, 0.12);
+    color: var(--accent-cyan);
+    border-left: 1px solid var(--border-color);
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.comparison-row:last-child {
+    border-bottom: none;
+}
+
+.comparison-col-val {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+/* Interactive Map Styling */
+#map, .leaflet-container {
+    height: 520px;
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+}
+
+.map-control-panel {
+    background: var(--bg-nav);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+/* Disclaimer & Notice Bar */
+.modelled-banner {
+    background: rgba(2, 132, 199, 0.12);
+    border: 1px solid rgba(2, 132, 199, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* AQI Gauge Display */
+.aqi-gauge-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--gauge-gradient);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.aqi-gauge-number {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0.5rem 0;
+    letter-spacing: -0.04em;
+}
+
+/* ==========================================================
+   LIGHT MODE CONTRAST & TYPOGRAPHY OVERRIDES
+   Ensures absolute text visibility and contrast in Light Mode
+   ========================================================== */
+
+[data-theme="light"] {
+    color: #0F172A !important;
+}
+
+[data-theme="light"] h1, 
+[data-theme="light"] h2, 
+[data-theme="light"] h3, 
+[data-theme="light"] h4, 
+[data-theme="light"] h5, 
+[data-theme="light"] h6 {
+    color: #0F172A !important;
+}
+
+/* Force all utility text-white classes to crisp dark slate in light mode */
+[data-theme="light"] .text-white,
+[data-theme="light"] .fw-bold.text-white,
+[data-theme="light"] strong.text-white,
+[data-theme="light"] span.text-white,
+[data-theme="light"] div.text-white,
+[data-theme="light"] p.text-white,
+[data-theme="light"] td.text-white,
+[data-theme="light"] th.text-white {
+    color: #0F172A !important;
+}
+
+/* Secondary & muted text contrast in light mode */
+[data-theme="light"] .text-secondary {
+    color: #475569 !important;
+}
+[data-theme="light"] .text-muted {
+    color: #64748B !important;
+}
+
+/* Navbar in light mode */
+[data-theme="light"] .navbar-brand {
+    color: #0F172A !important;
+}
+[data-theme="light"] .navbar-brand span {
+    color: #0F172A !important;
+}
+[data-theme="light"] .navbar-toggler i {
+    color: #0F172A !important;
+}
+[data-theme="light"] .nav-link {
+    color: #475569 !important;
+}
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active {
+    color: #0F172A !important;
+    background: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Cards & containers in light mode */
+[data-theme="light"] .climatex-card {
+    background: #FFFFFF !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Hardcoded bg-dark and table-dark overrides in light mode */
+[data-theme="light"] .bg-dark {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .table,
+[data-theme="light"] .table-dark {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .table th,
+[data-theme="light"] .table-dark th {
+    background-color: #F1F5F9 !important;
+    color: #475569 !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .table td,
+[data-theme="light"] .table-dark td {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+[data-theme="light"] .table-hover tbody tr:hover td {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+}
+
+/* Accordion in light mode */
+[data-theme="light"] .accordion-item {
+    background-color: #FFFFFF !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .accordion-button {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+}
+[data-theme="light"] .accordion-button:not(.collapsed) {
+    background-color: #F1F5F9 !important;
+    color: #0284C7 !important;
+}
+[data-theme="light"] .accordion-body {
+    background-color: #FFFFFF !important;
+    color: #334155 !important;
+}
+
+/* Metric Cards & Sliders in light mode */
+[data-theme="light"] .metric-value {
+    color: #0F172A !important;
+}
+[data-theme="light"] .slider-label {
+    color: #0F172A !important;
+}
+[data-theme="light"] .slider-container {
+    background: #F8FAFC !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .form-range {
+    background: #CBD5E1 !important;
+}
+[data-theme="light"] .preset-btn {
+    background: #F8FAFC !important;
+    color: #475569 !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+}
+[data-theme="light"] .preset-btn:hover,
+[data-theme="light"] .preset-btn.active {
+    background: rgba(2, 132, 199, 0.1) !important;
+    color: #0284C7 !important;
+    border-color: #0284C7 !important;
+}
+
+/* Before / After Comparison Card in light mode */
+[data-theme="light"] .comparison-card {
+    background: #FFFFFF !important;
+}
+[data-theme="light"] .comparison-header-col.current {
+    background: #F8FAFC !important;
+    color: #475569 !important;
+}
+[data-theme="light"] .comparison-header-col.simulated {
+    background: rgba(2, 132, 199, 0.08) !important;
+    color: #0284C7 !important;
+}
+[data-theme="light"] .comparison-row {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Dropdown Menu in light mode */
+[data-theme="light"] .dropdown-menu,
+[data-theme="light"] .dropdown-menu-dark {
+    background-color: #FFFFFF !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+[data-theme="light"] .dropdown-item {
+    color: #0F172A !important;
+}
+[data-theme="light"] .dropdown-item:hover {
+    background-color: #F1F5F9 !important;
+    color: #0284C7 !important;
+}
+
+/* Map controls in light mode */
+[data-theme="light"] .map-control-panel {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+}
+[data-theme="light"] .map-control-panel .text-white {
+    color: #0F172A !important;
+}
+
+/* Outlined button in light mode */
+[data-theme="light"] .btn-climatex-outline {
+    color: #0F172A !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+[data-theme="light"] .btn-climatex-outline:hover {
+    background: rgba(15, 23, 42, 0.05) !important;
+    border-color: #0284C7 !important;
+    color: #0284C7 !important;
+}
+[data-theme="light"] .btn-outline-light {
+    color: #0F172A !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+[data-theme="light"] .btn-outline-light:hover {
+    background: #0F172A !important;
+    color: #FFFFFF !important;
+}
+
+/* Footer in light mode */
+[data-theme="light"] footer {
+    background: #FFFFFF !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] footer span.fw-bold {
+    color: #0F172A !important;
+}
