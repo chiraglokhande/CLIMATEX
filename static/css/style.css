@@ -758,22 +758,22 @@ a:hover {
 }
 
 /* ==========================================================
-   RESPONSIVE DESIGN SYSTEM & DEVICE MEDIA QUERIES
-   Full fluidity & optimization for Mobile, Tablet, and Desktop
+   RESPONSIVE DESIGN SYSTEM & MOBILE POLISH
+   Pixel-perfect sizes, alignment, and touch UX across all devices
    ========================================================== */
 
 /* Universal Fluid Typography Scaling */
 .display-3 {
-    font-size: clamp(2.1rem, 5vw + 0.8rem, 3.75rem) !important;
+    font-size: clamp(1.9rem, 5vw + 0.5rem, 3.75rem) !important;
 }
 .display-4 {
-    font-size: clamp(1.8rem, 4vw + 0.6rem, 3rem) !important;
+    font-size: clamp(1.65rem, 4vw + 0.4rem, 3rem) !important;
 }
 .display-5 {
-    font-size: clamp(1.5rem, 3.5vw + 0.5rem, 2.5rem) !important;
+    font-size: clamp(1.4rem, 3.5vw + 0.3rem, 2.5rem) !important;
 }
 .display-6 {
-    font-size: clamp(1.35rem, 2.8vw + 0.5rem, 2rem) !important;
+    font-size: clamp(1.2rem, 2.8vw + 0.3rem, 2rem) !important;
 }
 
 /* Mobile-Friendly Table Wrapper */
@@ -781,6 +781,7 @@ a:hover {
     border-radius: var(--radius-sm);
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;
+    width: 100%;
 }
 
 /* Responsive Action Toolbar */
@@ -791,13 +792,44 @@ a:hover {
     flex-wrap: wrap;
 }
 
+/* Slider range limits beneath range inputs */
+.slider-limits {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+    line-height: 1.25;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+/* Preset Buttons Grid Container */
+.preset-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Map Legend Grid */
+.map-legend-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Comparison Mobile Labels */
+.comparison-label-mobile {
+    display: none;
+}
+
 /* ----------------------------------------------------------
    Tablets & Laptops (max-width: 991.98px)
    ---------------------------------------------------------- */
 @media (max-width: 991.98px) {
-    /* Mobile Navigation Drawer */
     .climatex-nav {
-        padding: 0.65rem 0;
+        padding: 0.6rem 0;
     }
 
     .navbar-collapse {
@@ -806,7 +838,10 @@ a:hover {
         border-radius: var(--radius-md);
         padding: 1.25rem;
         margin-top: 0.75rem;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        max-height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .navbar-nav {
@@ -815,9 +850,19 @@ a:hover {
     }
 
     .nav-link {
-        padding: 0.65rem 1rem !important;
-        font-size: 1rem;
+        padding: 0.7rem 1rem !important;
+        font-size: 0.96rem;
         border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown-menu {
+        background: var(--bg-box) !important;
+        border: 1px solid var(--border-color) !important;
+        margin: 0.35rem 0 0.5rem 0.75rem !important;
+        padding: 0.5rem !important;
+        border-radius: var(--radius-sm) !important;
     }
 
     /* Navbar Action Buttons in Drawer */
@@ -832,25 +877,23 @@ a:hover {
     .navbar-collapse .theme-toggle-btn {
         width: 100%;
         justify-content: center;
-        padding: 0.65rem 1rem;
+        padding: 0.7rem 1rem;
         font-size: 0.95rem;
-        min-height: 44px;
+        min-height: 46px;
     }
 
     .navbar-collapse .btn-climatex-glow {
         width: 100%;
         justify-content: center;
-        padding: 0.7rem 1.2rem;
+        padding: 0.75rem 1.2rem;
         font-size: 0.95rem;
-        min-height: 44px;
+        min-height: 46px;
     }
 
-    /* Cards & Spacing on Tablets */
     .climatex-card {
         padding: 1.25rem;
     }
 
-    /* Interactive Map on Tablets */
     #map, .leaflet-container {
         height: 460px;
     }
@@ -860,37 +903,43 @@ a:hover {
    Tablets & Mobile Phones (max-width: 767.98px)
    ---------------------------------------------------------- */
 @media (max-width: 767.98px) {
-    /* Layout Container Tightening */
     .container-fluid.px-lg-4 {
         padding-left: 0.85rem !important;
         padding-right: 0.85rem !important;
     }
 
-    /* Hero Section Adjustments */
     .py-5 {
-        padding-top: 2.25rem !important;
-        padding-bottom: 2.25rem !important;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
     }
 
-    /* Fluid Map Height on Mobile */
+    .py-4 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    /* Leaflet Map on Tablets & Mobile */
     #map, .leaflet-container {
         height: 380px !important;
-        min-height: 340px;
+        min-height: 320px;
     }
 
-    /* Convert Floating Legend to Static Block below Map on Mobile */
-    .map-control-panel.position-absolute {
+    /* Convert Floating Legend to Static Block below Map */
+    .map-control-panel.position-absolute,
+    .map-legend-box {
         position: static !important;
         max-width: 100% !important;
-        margin: 0.85rem 0 0 0 !important;
+        margin: 0.75rem 0 0 0 !important;
         box-shadow: none !important;
     }
 
-    /* Slider Container Touch Optimizations */
-    .slider-container {
-        padding: 0.85rem 1rem;
+    .map-legend-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem 0.75rem;
     }
 
+    /* Touch Controls */
     .form-range {
         height: 8px;
     }
@@ -900,19 +949,18 @@ a:hover {
         height: 24px;
     }
 
-    /* Touch Targets for Selects & Buttons */
     .form-select, .btn {
         min-height: 42px;
     }
 
     /* Metric Cards */
     .metric-card {
-        padding: 1rem;
+        padding: 0.85rem 0.75rem;
         min-height: auto;
     }
 
     .metric-value {
-        font-size: 1.55rem;
+        font-size: 1.45rem;
     }
 
     /* Presets Bar */
@@ -941,9 +989,36 @@ a:hover {
    Small Mobile Phones (max-width: 575.98px)
    ---------------------------------------------------------- */
 @media (max-width: 575.98px) {
-    /* Brand logo on small screens */
+    /* Viewport & Container Spacing */
+    .container, 
+    .container-fluid,
+    .container-fluid.px-lg-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    .py-5 {
+        padding-top: 1.75rem !important;
+        padding-bottom: 1.75rem !important;
+    }
+
+    .py-4 {
+        padding-top: 1.25rem !important;
+        padding-bottom: 1.25rem !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.25rem !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Brand Logo & Header */
     .navbar-brand {
         font-size: 1.15rem;
+        gap: 0.4rem;
     }
 
     .brand-icon {
@@ -952,11 +1027,63 @@ a:hover {
         font-size: 0.95rem;
     }
 
-    /* Hero CTA Buttons: Full Width Stack */
+    /* Headings Auto-Break & Fluid Sizing */
+    h1, .h1 {
+        font-size: clamp(1.55rem, 6.5vw, 2.15rem) !important;
+        line-height: 1.2 !important;
+        word-break: break-word;
+    }
+
+    h2, .h2 {
+        font-size: clamp(1.3rem, 5.2vw, 1.75rem) !important;
+        line-height: 1.25 !important;
+        word-break: break-word;
+    }
+
+    h3, .h3 {
+        font-size: clamp(1.15rem, 4.4vw, 1.4rem) !important;
+        line-height: 1.3 !important;
+    }
+
+    h4, .h4 {
+        font-size: clamp(1.02rem, 4vw, 1.2rem) !important;
+        line-height: 1.35 !important;
+    }
+
+    h5, .h5 {
+        font-size: 0.95rem !important;
+    }
+
+    .lead {
+        font-size: 0.95rem !important;
+        line-height: 1.55 !important;
+    }
+
+    /* Buttons: Centered & Touch Friendly */
+    .btn {
+        min-height: 44px;
+        white-space: normal !important;
+        text-align: center;
+        justify-content: center;
+        line-height: 1.3;
+    }
+
+    .btn-sm {
+        min-height: 38px;
+        font-size: 0.82rem;
+    }
+
+    .btn-lg {
+        font-size: 0.95rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+
+    /* Hero CTA Buttons */
     .hero-cta-group,
     .d-flex.flex-wrap.gap-3.justify-content-center.justify-content-lg-start.mb-4 {
         flex-direction: column !important;
         width: 100%;
+        gap: 0.65rem !important;
     }
 
     .hero-cta-group .btn,
@@ -967,47 +1094,175 @@ a:hover {
 
     /* Header Controls Toolbar: Full Width Stack */
     .page-header-controls {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: stretch !important;
-        width: 100%;
+        width: 100% !important;
+        gap: 0.55rem !important;
     }
 
+    .page-header-controls > div,
     .page-header-controls .form-select,
     .page-header-controls .btn {
         width: 100% !important;
         min-width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* Metric Cards Grid */
+    .metric-card {
+        padding: 0.75rem 0.65rem !important;
+        min-height: 105px !important;
+        border-radius: var(--radius-sm);
+    }
+
+    .metric-title {
+        font-size: 0.72rem !important;
+        line-height: 1.25;
+        gap: 0.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .metric-title i {
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    .metric-value {
+        font-size: 1.35rem !important;
+        line-height: 1.15;
+        margin: 0.25rem 0 !important;
+    }
+
+    .metric-value span {
+        font-size: 0.72rem !important;
+    }
+
+    .metric-sub {
+        font-size: 0.67rem !important;
+        line-height: 1.25;
+        flex-wrap: wrap;
+        gap: 0.2rem;
+    }
+
+    /* Cards general padding */
+    .climatex-card {
+        padding: 0.95rem 0.85rem !important;
+        border-radius: var(--radius-sm);
+    }
+
+    /* Preset Buttons on Small Phones (2-col grid) */
+    .preset-btn-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.45rem;
+        width: 100%;
+    }
+
+    .preset-btn {
+        width: 100% !important;
+        padding: 0.45rem 0.5rem !important;
+        font-size: 0.76rem !important;
+        min-height: 38px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Slider Container Touch Optimizations */
+    .slider-container {
+        padding: 0.75rem 0.85rem !important;
+        margin-bottom: 0.85rem;
+    }
+
+    .slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.4rem;
+        gap: 0.35rem;
+    }
+
+    .slider-label {
+        font-size: 0.82rem;
+        line-height: 1.25;
+    }
+
+    .slider-badge {
+        font-size: 0.78rem;
+        padding: 0.15rem 0.45rem;
+    }
+
+    .slider-limits {
+        font-size: 0.65rem;
+    }
+
+    /* Leaflet Map on Mobile Phones */
+    #map, .leaflet-container {
+        height: 340px !important;
+        min-height: 300px;
+    }
+
+    .leaflet-control-attribution {
+        font-size: 9px !important;
     }
 
     /* Before vs After Simulation Comparison Table */
-    .comparison-header {
-        grid-template-columns: 1fr;
+    .comparison-card {
+        border-radius: var(--radius-sm);
     }
 
-    .comparison-header-col.simulated {
-        border-left: none;
-        border-top: 1px solid var(--border-color);
+    .comparison-header {
+        display: none; /* Mobile switches to inline scenario chips */
     }
 
     .comparison-row {
         grid-template-columns: 1fr;
-        gap: 0.4rem;
-        padding: 0.85rem 1rem;
+        gap: 0.45rem;
+        padding: 0.75rem 0.85rem;
     }
 
-    .comparison-row .comparison-col-val:last-child {
-        padding-left: 0.5rem;
-        border-left: 2px solid var(--accent-cyan);
-    }
-
-    /* Slider Header: prevent label/badge collision */
-    .slider-header {
-        flex-direction: column;
-        align-items: flex-start !important;
+    .comparison-col-val {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 0.35rem;
+        font-size: 0.82rem;
     }
 
-    .slider-badge {
-        align-self: flex-start;
+    .comparison-col-val.simulated-val {
+        background: rgba(6, 182, 212, 0.08);
+        border-left: 3px solid var(--accent-cyan) !important;
+        padding: 0.45rem 0.65rem !important;
+        border-radius: 4px;
+        margin-top: 0.2rem;
+    }
+
+    .comparison-label-mobile {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-right: 0.25rem;
+    }
+
+    /* AQI Dial Gauge Container */
+    .aqi-gauge-card {
+        padding: 1.35rem 0.75rem;
+    }
+
+    .aqi-gauge-number {
+        font-size: 3rem !important;
+    }
+
+    /* Pollutant Breakdown Cards */
+    .theme-box-subtle {
+        padding: 0.65rem 0.75rem !important;
+    }
+
+    .theme-box-subtle .fs-4 {
+        font-size: 1.15rem !important;
     }
 
     /* Status Strip Badges Grid */
@@ -1017,30 +1272,22 @@ a:hover {
         gap: 0.5rem;
     }
 
-    /* AQI Dial Gauge Container */
-    .aqi-gauge-card {
-        padding: 1.5rem 0.75rem;
+    /* Tables in Cards */
+    .table {
+        font-size: 0.8rem;
     }
 
-    .aqi-gauge-number {
-        font-size: 3.25rem;
+    .table th, .table td {
+        padding: 0.5rem 0.5rem !important;
     }
+}
 
-    /* Cards general padding */
-    .climatex-card {
-        padding: 1rem !important;
-        border-radius: var(--radius-sm);
-    }
-
-    /* Action Buttons in Cards */
-    .action-btn-stack {
-        flex-direction: column;
-        width: 100%;
-        gap: 0.5rem !important;
-    }
-
-    .action-btn-stack .btn {
-        width: 100% !important;
-    }
+/* Light mode overrides for responsive elements */
+[data-theme="light"] .comparison-col-val.simulated-val {
+    background: rgba(2, 132, 199, 0.08) !important;
+    border-left-color: #0284C7 !important;
+}
+[data-theme="light"] .navbar-toggler i {
+    color: #0F172A !important;
 }
 
