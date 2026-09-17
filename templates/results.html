@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}Scenario Results – CLIMATEX Decision Support System{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-4 py-4">
+    <!-- Header with Action Buttons -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 badge bg-primary mb-1">
+                <i class="bi bi-file-earmark-bar-graph"></i> Simulation Analysis
+            </div>
+            <h2 class="fw-bold text-white mb-1">What-If Scenario Impact Assessment</h2>
+            <div class="text-secondary small">Modelled comparative diagnostics for <strong>{{ sim.location }}</strong> under simulated climate perturbations.</div>
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <button class="btn btn-climatex-primary btn-sm" onclick="saveCurrentScenario()" id="saveScenarioBtn">
+                <i class="bi bi-bookmark-plus-fill"></i> Save Scenario
+            </button>
+            <a href="{{ url_for('map.interactive_map', location=sim.location, rainfall=sim.inputs.rainfall_mm, temperature=sim.inputs.temperature_c, aqi=sim.inputs.aqi, water=sim.inputs.water_availability_pct, power=sim.inputs.power_availability_pct) }}" class="btn btn-climatex-outline btn-sm">
+                <i class="bi bi-map-fill"></i> View on GIS Map
+            </a>
+            <a href="{{ url_for('simulator.simulator', location=sim.location) }}" class="btn btn-secondary btn-sm">
+                <i class="bi bi-arrow-repeat"></i> Adjust Sliders
+            </a>
+        </div>
+    </div>
+
+    <!-- Modelled Disclaimer Banner -->
+    <div class="modelled-banner mb-4">
+        <i class="bi bi-shield-exclamation text-warning fs-5"></i>
+        <div>
+            <strong>Modelled Simulation Results:</strong> Outputs are decision-support projections calculated by the CLIMATEX multi-factor risk engine. Infrastructure and road status represent <em>potential disruption probabilities</em> for municipal contingency planning, not guaranteed real-time conditions.
+        </div>
+    </div>
+
+    <!-- BEFORE vs AFTER Comparison Dashboard -->
+    <div class="climatex-card mb-4 p-0 comparison-card">
+        <div class="comparison-header">
+            <div class="comparison-header-col current d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-clock-history me-1"></i> CURRENT BASELINE CONDITION</span>
+                <span class="badge bg-secondary">Observed Telemetry</span>
+            </div>
+            <div class="comparison-header-col simulated d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-cpu-fill me-1"></i> SIMULATED WHAT-IF SCENARIO</span>
+                <span class="badge bg-info text-dark">Modelled Projection</span>
+            </div>
+        </div>
+
+        <!-- Row 1: Rainfall & Flood Risk -->
+        <div class="comparison-row">
+            <div class="comparison-col-val text-secondary">
+                <i class="bi bi-cloud-rain text-primary"></i> Rainfall: <strong>{{ sim.baseline.rainfall_mm }} mm</strong>
+                <span class="badge badge-risk badge-medium ms-2">Flood Risk: {{ sim.baseline.risk.flood_risk }}</span>
+            </div>
+            <div class="comparison-col-val text-info">
+                <i class="bi bi-cloud-rain-heavy-fill text-info"></i> Rainfall: <strong>{{ sim.inputs.rainfall_mm }} mm</strong>
+                <span class="badge badge-risk {{ sim.simulated.risk.badge_class }} ms-2">Flood Risk: {{ sim.simulated.risk.flood_risk }}</span>
+            </div>
+        </div>
+
+        <!-- Row 2: AQI & Air Quality Risk -->
+        <div class="comparison-row">
+            <div class="comparison-col-val text-secondary">
+                <i class="bi bi-wind text-warning"></i> Air Quality: <strong>{{ sim.baseline.aqi }} AQI</strong>
+                <span class="badge badge-risk badge-medium ms-2">{{ sim.baseline.risk.air_quality_risk }}</span>
+            </div>
+            <div class="comparison-col-val text-info">
+                <i class="bi bi-wind text-warning"></i> Air Quality: <strong>{{ sim.inputs.aqi }} AQI</strong>
+                <span class="badge badge-risk {{ sim.simulated.risk.badge_class }} ms-2">{{ sim.simulated.risk.air_quality_risk }}</span>
+            </div>
+        </div>
+
+        <!-- Row 3: Temperature & Heat Risk -->
+        <div class="comparison-row">
+            <div class="comparison-col-val text-secondary">
+                <i class="bi bi-thermometer-half text-danger"></i> Temperature: <strong>{{ sim.baseline.temperature_c }} °C</strong>
+                <span class="badge badge-risk badge-low ms-2">{{ sim.baseline.risk.heat_risk }}</span>
+            </div>
+            <div class="comparison-col-val text-info">
+                <i class="bi bi-thermometer-sun text-danger"></i> Temperature: <strong>{{ sim.inputs.temperature_c }} °C</strong>
+                <span class="badge badge-risk {{ sim.simulated.risk.badge_class }} ms-2">{{ sim.simulated.risk.heat_risk }}</span>
+            </div>
+        </div>
+
+        <!-- Row 4: Population Exposure -->
+        <div class="comparison-row">
+            <div class="comparison-col-val text-secondary">
+                <i class="bi bi-people text-info"></i> Potentially Exposed Citizens: <strong>{{ "{:,}".format(sim.baseline.exposed_population) }}</strong>
+            </div>
+            <div class="comparison-col-val text-warning">
+                <i class="bi bi-people-fill text-warning"></i> Potentially Exposed Citizens: <strong class="fs-5 text-warning">{{ "{:,}".format(sim.simulated.exposed_population) }}</strong>
+                <span class="badge bg-danger ms-2">+{{ "{:,}".format(sim.simulated.exposed_population - sim.baseline.exposed_population) }}</span>
+            </div>
+        </div>
+
+        <!-- Row 5: Roads & Hospitals -->
+        <div class="comparison-row">
+            <div class="comparison-col-val text-secondary">
+                <span>Roads at Risk: <strong>{{ sim.baseline.roads_at_risk }}</strong> | Hospitals: <strong>{{ sim.baseline.hospitals_exposed }}</strong></span>
+            </div>
+            <div class="comparison-col-val text-danger">
+                <span>Roads at Risk: <strong class="text-danger fs-5">{{ sim.simulated.roads_at_risk }}</strong> | Hospitals Potentially Exposed: <strong class="text-danger fs-5">{{ sim.simulated.hospitals_exposed }}</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Details Grid -->
+    <div class="row g-4 mb-4">
+        <!-- Road Accessibility Section -->
+        <div class="col-lg-6">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-signpost-2-fill text-warning me-2"></i> Road Accessibility & Disruption Risk</h5>
+                    <span class="badge bg-danger">{{ sim.simulated.roads_at_risk }} Corridors at Risk</span>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover table-sm align-middle" style="background: transparent;">
+                        <thead>
+                            <tr class="text-secondary small">
+                                <th>Corridor / Road Name</th>
+                                <th>Elevation Risk</th>
+                                <th>Simulated Status</th>
+                                <th>Recommended Alt Route</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rd in sim.roads %}
+                            <tr>
+                                <td class="fw-semibold text-white">
+                                    {{ rd.name }}
+                                    {% if rd.is_emergency_route %}
+                                    <span class="badge bg-primary ms-1" style="font-size: 0.65rem;">Emergency Corridor</span>
+                                    {% endif %}
+                                </td>
+                                <td class="small text-secondary">{{ rd.elevation_risk }} ({{ rd.elevation_m }}m)</td>
+                                <td>
+                                    <span class="badge {{ rd.status_class }}">{{ rd.status }}</span>
+                                </td>
+                                <td class="small text-info">{{ rd.alt_route }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Critical Infrastructure Section -->
+        <div class="col-lg-6">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-hospital text-danger me-2"></i> Critical Infrastructure & Emergency Shelters</h5>
+                    <span class="badge bg-info text-dark">{{ sim.simulated.safe_shelters }} Safe Shelters Active</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover table-sm align-middle" style="background: transparent;">
+                        <thead>
+                            <tr class="text-secondary small">
+                                <th>Facility Name</th>
+                                <th>Type</th>
+                                <th>Capacity</th>
+                                <th>Simulated Operational State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inf in sim.infrastructure %}
+                            <tr>
+                                <td class="fw-semibold text-white">{{ inf.name }}</td>
+                                <td class="small text-secondary">
+                                    <span class="badge bg-secondary">{{ inf.type }}</span>
+                                </td>
+                                <td class="small text-white">{{ inf.capacity }}</td>
+                                <td>
+                                    <span class="badge {{ inf.status_badge }}">{{ inf.status_note }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Population Exposure Chart & Multi-Factor Contributors Row -->
+    <div class="row g-4 mb-4">
+        <!-- Population Exposure Breakdown -->
+        <div class="col-lg-5">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-people-fill text-info me-2"></i> Modelled Population Exposure</h5>
+                    <span class="badge bg-secondary small">Estimated Breakdown</span>
+                </div>
+                <div style="height: 230px; position: relative;">
+                    <canvas id="popExposureChart"></canvas>
+                </div>
+                <div class="row g-2 text-center mt-3 pt-2 border-top border-secondary border-opacity-25 small">
+                    <div class="col-4">
+                        <div class="text-danger fw-bold fs-6">{{ "{:,}".format(sim.simulated.population_breakdown.high_risk) }}</div>
+                        <div class="text-secondary" style="font-size: 0.75rem;">High Vulnerability</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-warning fw-bold fs-6">{{ "{:,}".format(sim.simulated.population_breakdown.medium_risk) }}</div>
+                        <div class="text-secondary" style="font-size: 0.75rem;">Moderate Risk</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-success fw-bold fs-6">{{ "{:,}".format(sim.simulated.population_breakdown.low_risk) }}</div>
+                        <div class="text-secondary" style="font-size: 0.75rem;">Low / Safe Zone</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations Column -->
+        <div class="col-lg-7">
+            <div class="climatex-card h-100 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-shield-check text-success me-2"></i> Decision Support Directives</h5>
+                    <span class="badge bg-info text-dark">Action Protocol</span>
+                </div>
+
+                <div class="accordion accordion-flush" id="recsAccordion">
+                    {% for cat, acts in recommendations.actions.items() %}
+                    {% if acts %}
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 mb-2 rounded">
+                        <h2 class="accordion-header" id="heading-{{ cat }}">
+                            <button class="accordion-button bg-dark text-white fw-bold py-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ cat }}">
+                                <i class="bi bi-chevron-right text-info me-2"></i> {{ cat.replace('_', ' ')|upper }} ({{ acts|length }} Actions)
+                            </button>
+                        </h2>
+                        <div id="collapse-{{ cat }}" class="accordion-collapse collapse show" data-bs-parent="#recsAccordion">
+                            <div class="accordion-body bg-dark text-secondary small py-2">
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                    {% for a in acts %}
+                                    <li class="p-2 rounded bg-dark border border-secondary border-opacity-25">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <strong class="text-white">{{ a.title }}</strong>
+                                            <span class="badge {{ a.badge }}" style="font-size: 0.65rem;">{{ a.priority }}</span>
+                                        </div>
+                                        <div>{{ a.desc }}</div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const simData = {{ sim|tojson }};
+
+    // Population Exposure Donut Chart
+    new Chart(document.getElementById('popExposureChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['High Vulnerability', 'Moderate Risk', 'Safe / Low Risk'],
+            datasets: [{
+                data: [
+                    simData.simulated.population_breakdown.high_risk,
+                    simData.simulated.population_breakdown.medium_risk,
+                    simData.simulated.population_breakdown.low_risk
+                ],
+                backgroundColor: ['#EF4444', '#F59E0B', '#10B981'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#94A3B8', boxWidth: 10, font: { size: 10 } }
+                }
+            },
+            cutout: '65%'
+        }
+    });
+
+    async function saveCurrentScenario() {
+        const btn = document.getElementById('saveScenarioBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
+
+        try {
+            const res = await fetch("{{ url_for('simulator.save_scenario') }}", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: `${simData.location} Climate Scenario (${simData.inputs.rainfall_mm}mm, ${simData.inputs.aqi} AQI)`,
+                    location: simData.location,
+                    rainfall: simData.inputs.rainfall_mm,
+                    temperature: simData.inputs.temperature_c,
+                    aqi: simData.inputs.aqi,
+                    water_availability: simData.inputs.water_availability_pct,
+                    power_availability: simData.inputs.power_availability_pct,
+                    description: `Simulated via What-If Engine. Flood: ${simData.simulated.risk.flood_risk}, AQI: ${simData.simulated.risk.air_quality_risk}, Overall: ${simData.simulated.risk.overall_risk}`
+                })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                btn.className = "btn btn-success btn-sm";
+                btn.innerHTML = '<i class="bi bi-check2-all"></i> Saved to Reports!';
+            }
+        } catch (e) {
+            console.error(e);
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-exclamation-circle"></i> Retry Save';
+        }
+    }
+</script>
+{% endblock %}

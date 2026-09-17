@@ -1,0 +1,152 @@
+{
+  "Pune": {
+    "total_population": 3950000,
+    "wards": [
+      {
+        "name": "Sinhagad Road / Dattawadi Ward",
+        "population": 285000,
+        "density_per_sqkm": 14200,
+        "flood_susceptibility": "High",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [18.498, 73.825], [18.490, 73.840], [18.475, 73.830], [18.470, 73.815], [18.485, 73.810]
+        ]
+      },
+      {
+        "name": "Kasba - Vishrambaug Peths (Old City Core)",
+        "population": 340000,
+        "density_per_sqkm": 28500,
+        "flood_susceptibility": "Medium",
+        "heat_susceptibility": "High",
+        "polygon": [
+          [18.525, 73.850], [18.528, 73.865], [18.512, 73.865], [18.510, 73.848]
+        ]
+      },
+      {
+        "name": "Shivajinagar - Deccan Gymkhana",
+        "population": 210000,
+        "density_per_sqkm": 11800,
+        "flood_susceptibility": "Medium",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [18.538, 73.838], [18.540, 73.858], [18.520, 73.855], [18.518, 73.835]
+        ]
+      },
+      {
+        "name": "Hadapsar - Magarpatta Sub-city",
+        "population": 460000,
+        "density_per_sqkm": 16500,
+        "flood_susceptibility": "Medium",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [18.520, 73.910], [18.525, 73.950], [18.490, 73.945], [18.485, 73.905]
+        ]
+      },
+      {
+        "name": "Kothrud - Bavdhan Ward",
+        "population": 390000,
+        "density_per_sqkm": 9500,
+        "flood_susceptibility": "Low",
+        "heat_susceptibility": "Low",
+        "polygon": [
+          [18.515, 73.790], [18.518, 73.820], [18.485, 73.815], [18.480, 73.780]
+        ]
+      },
+      {
+        "name": "Sangamwadi - Bund Garden Ward",
+        "population": 195000,
+        "density_per_sqkm": 13400,
+        "flood_susceptibility": "High",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [18.545, 73.865], [18.552, 73.890], [18.535, 73.885], [18.530, 73.860]
+        ]
+      }
+    ]
+  },
+  "Mumbai": {
+    "total_population": 12500000,
+    "wards": [
+      {
+        "name": "F-South Ward (Parel / Hindmata)",
+        "population": 380000,
+        "density_per_sqkm": 34000,
+        "flood_susceptibility": "High",
+        "heat_susceptibility": "High",
+        "polygon": [
+          [19.010, 72.835], [19.020, 72.855], [19.000, 72.855], [18.995, 72.835]
+        ]
+      },
+      {
+        "name": "L Ward (Kurla Mithi Basin)",
+        "population": 890000,
+        "density_per_sqkm": 42000,
+        "flood_susceptibility": "Critical",
+        "heat_susceptibility": "High",
+        "polygon": [
+          [19.080, 72.870], [19.085, 72.895], [19.055, 72.890], [19.050, 72.865]
+        ]
+      },
+      {
+        "name": "H-West Ward (Bandra - Khar)",
+        "population": 350000,
+        "density_per_sqkm": 19000,
+        "flood_susceptibility": "Medium",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [19.070, 72.820], [19.075, 72.840], [19.045, 72.835], [19.040, 72.815]
+        ]
+      }
+    ]
+  },
+  "Nashik": {
+    "total_population": 1580000,
+    "wards": [
+      {
+        "name": "Panchavati Godavari Basin",
+        "population": 320000,
+        "density_per_sqkm": 11500,
+        "flood_susceptibility": "High",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [20.015, 73.780], [20.020, 73.805], [19.995, 73.800], [19.990, 73.775]
+        ]
+      },
+      {
+        "name": "CIDCO - Satpur Zone",
+        "population": 450000,
+        "density_per_sqkm": 8900,
+        "flood_susceptibility": "Low",
+        "heat_susceptibility": "Medium",
+        "polygon": [
+          [19.985, 73.730], [19.990, 73.760], [19.965, 73.755], [19.960, 73.725]
+        ]
+      }
+    ]
+  },
+  "Nagpur": {
+    "total_population": 2450000,
+    "wards": [
+      {
+        "name": "Sitabuldi - Mahal Zone",
+        "population": 410000,
+        "density_per_sqkm": 21000,
+        "flood_susceptibility": "Medium",
+        "heat_susceptibility": "High",
+        "polygon": [
+          [21.155, 79.075], [21.160, 79.105], [21.135, 79.100], [21.130, 79.070]
+        ]
+      },
+      {
+        "name": "Dharampeth - West Zone",
+        "population": 290000,
+        "density_per_sqkm": 12000,
+        "flood_susceptibility": "Low",
+        "heat_susceptibility": "High",
+        "polygon": [
+          [21.150, 79.040], [21.155, 79.070], [21.125, 79.065], [21.120, 79.035]
+        ]
+      }
+    ]
+  }
+}

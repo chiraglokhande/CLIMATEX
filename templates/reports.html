@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Reports & Simulation History – CLIMATEX{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-4 py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 badge bg-primary mb-1">
+                <i class="bi bi-journal-text"></i> Archive & Exports
+            </div>
+            <h2 class="fw-bold text-white mb-1">Scenario Reports & Simulation History</h2>
+            <div class="text-secondary small">Stored climate simulations, multi-factor audit logs, and downloadable PDF reports.</div>
+        </div>
+
+        <div>
+            <a href="{{ url_for('simulator.simulator') }}" class="btn btn-climatex-glow btn-sm">
+                <i class="bi bi-plus-circle"></i> Create New Simulation
+            </a>
+        </div>
+    </div>
+
+    <!-- Scenarios History Table -->
+    <div class="climatex-card mb-4 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-white mb-0"><i class="bi bi-database-check text-info me-2"></i> Saved Scenarios Database ({{ scenarios|length }})</h5>
+            <span class="badge bg-secondary small">SQLite / PostgreSQL Schema</span>
+        </div>
+
+        {% if scenarios %}
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle" style="background: transparent;">
+                <thead>
+                    <tr class="text-secondary small">
+                        <th>Scenario Name</th>
+                        <th>Location</th>
+                        <th>Date & Time</th>
+                        <th>Simulated Conditions</th>
+                        <th>Overall Risk</th>
+                        <th>Exposed Pop</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sc in scenarios %}
+                    {% set res = sc.results[0] if sc.results else None %}
+                    <tr id="scenario-row-{{ sc.id }}">
+                        <td>
+                            <div class="fw-bold text-white">{{ sc.name }}</div>
+                            <div class="small text-muted text-truncate" style="max-width: 250px;">{{ sc.description or 'CLIMATEX Simulation' }}</div>
+                        </td>
+                        <td><span class="badge bg-dark border text-info"><i class="bi bi-geo-alt-fill text-danger me-1"></i>{{ sc.location_name }}</span></td>
+                        <td class="small text-secondary">{{ sc.created_at.strftime('%b %d, %Y %H:%M') }}</td>
+                        <td class="small text-secondary">
+                            <div><i class="bi bi-cloud-rain text-primary me-1"></i>Rain: <strong>{{ sc.rainfall_mm }}mm</strong> | Temp: <strong>{{ sc.temperature_c }}°C</strong></div>
+                            <div><i class="bi bi-wind text-warning me-1"></i>AQI: <strong>{{ sc.aqi }}</strong> | Water: <strong>{{ sc.water_availability_pct }}%</strong></div>
+                        </td>
+                        <td>
+                            {% if res %}
+                            <span class="badge badge-risk {% if res.overall_risk == 'CRITICAL' %}badge-critical{% elif res.overall_risk == 'HIGH' %}badge-high{% elif res.overall_risk == 'MEDIUM' %}badge-medium{% else %}badge-low{% endif %}">
+                                {{ res.overall_risk }} ({{ res.exposure_score }})
+                            </span>
+                            {% else %}
+                            <span class="badge bg-secondary">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td class="small fw-semibold text-warning">
+                            {% if res %}
+                            {{ "{:,}".format(res.population_exposed) }}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-1">
+                                <a href="{{ url_for('reports.download_pdf', scenario_id=sc.id) }}" class="btn btn-outline-info btn-sm text-nowrap" title="Download Official PDF Report">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> PDF
+                                </a>
+                                <a href="{{ url_for('simulator.results', location=sc.location_name, rainfall=sc.rainfall_mm, temperature=sc.temperature_c, aqi=sc.aqi, water=sc.water_availability_pct, power=sc.power_availability_pct) }}" class="btn btn-outline-light btn-sm text-nowrap" title="Inspect Results">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteScenario({{ sc.id }})" title="Delete Record">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-secondary">
+            <i class="bi bi-inbox fs-1 text-muted mb-2"></i>
+            <p>No saved scenarios found in database. Run a simulation to save your first report!</p>
+            <a href="{{ url_for('simulator.simulator') }}" class="btn btn-climatex-primary btn-sm">
+                Launch Climate Simulator
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    async function deleteScenario(id) {
+        if (!confirm('Are you sure you want to delete this scenario record?')) return;
+
+        try {
+            const res = await fetch("{{ url_for('reports.reports_page') }}/../api/scenarios/delete/" + id, {
+                method: 'POST'
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                const row = document.getElementById('scenario-row-' + id);
+                if (row) row.remove();
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Failed to delete scenario.');
+        }
+    }
+</script>
+{% endblock %}

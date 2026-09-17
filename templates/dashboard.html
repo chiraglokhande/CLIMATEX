@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – CLIMATEX Environmental Monitoring{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-4 py-4">
+    <!-- Header with City Selector -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <h2 class="fw-bold text-white mb-1"><i class="bi bi-grid-1x2-fill text-info me-2"></i> Environmental Operations Dashboard</h2>
+            <div class="text-secondary small">Real-time environmental telemetry, sensor observations, and baseline risk monitoring.</div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+            <label for="citySelector" class="text-secondary small fw-semibold text-nowrap"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Location:</label>
+            <select id="citySelector" class="form-select form-select-sm bg-dark text-white border-secondary" style="min-width: 160px;">
+                {% for loc in locations %}
+                <option value="{{ loc.name }}" {% if loc.name == location %}selected{% endif %}>{{ loc.name }} ({{ loc.elevation }}m elev)</option>
+                {% endfor %}
+            </select>
+            <a id="simulateCityBtn" href="{{ url_for('simulator.simulator', location=location) }}" class="btn btn-climatex-primary btn-sm text-nowrap">
+                <i class="bi bi-sliders"></i> Simulate {{ location }}
+            </a>
+        </div>
+    </div>
+
+    <!-- Current Environmental Status Strip -->
+    <div class="climatex-card mb-4 p-3 theme-box">
+        <div class="row g-3 align-items-center">
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon" style="background: linear-gradient(135deg, {{ risk.color_hex }}, #1E293B);">
+                        <i class="bi bi-activity text-white"></i>
+                    </div>
+                    <div>
+                        <div class="small text-secondary">Overall Environmental Status</div>
+                        <span class="badge badge-risk {{ risk.badge_class }} fs-6">{{ risk.overall_risk }} RISK (Score: {{ risk.exposure_score }})</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row g-2 text-center text-md-start">
+                    <div class="col-6 col-md-3">
+                        <div class="p-2 rounded theme-box-subtle">
+                            <div class="small text-secondary"><i class="bi bi-wind me-1"></i> AQI Status</div>
+                            <span class="badge badge-risk {{ aqi_data.badge_class }}">{{ aqi_data.category }} ({{ aqi_data.aqi }})</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-2 rounded theme-box-subtle">
+                            <div class="small text-secondary"><i class="bi bi-cloud-rain-heavy me-1"></i> Flood Risk</div>
+                            <span class="badge badge-risk {% if weather.flood_risk_baseline == 'High' %}badge-high{% elif weather.flood_risk_baseline == 'Medium' %}badge-medium{% else %}badge-low{% endif %}">
+                                {{ weather.flood_risk_baseline }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-2 rounded theme-box-subtle">
+                            <div class="small text-secondary"><i class="bi bi-thermometer-sun me-1"></i> Heat Risk</div>
+                            <span class="badge badge-risk {% if weather.heat_risk_baseline == 'High' %}badge-high{% elif weather.heat_risk_baseline == 'Medium' %}badge-medium{% else %}badge-low{% endif %}">
+                                {{ weather.heat_risk_baseline }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-2 rounded theme-box-subtle">
+                            <div class="small text-secondary"><i class="bi bi-droplet-half me-1"></i> Water Risk</div>
+                            <span class="badge badge-risk {% if weather.water_risk_baseline == 'High' %}badge-high{% elif weather.water_risk_baseline == 'Medium' %}badge-medium{% else %}badge-low{% endif %}">
+                                {{ weather.water_risk_baseline }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8 Metric Cards Grid -->
+    <div class="row g-3 mb-4">
+        <!-- AQI Card -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card" style="border-left-color: {{ aqi_data.color_hex }};">
+                <div class="metric-title">
+                    <span>Air Quality Index</span>
+                    <i class="bi bi-wind text-info"></i>
+                </div>
+                <div class="metric-value" style="color: {{ aqi_data.color_hex }};">{{ aqi_data.aqi }}</div>
+                <div class="metric-sub d-flex justify-content-between">
+                    <span>Dominant: {{ aqi_data.dominant_pollutant }}</span>
+                    <a href="{{ url_for('aqi.aqi_monitoring', location=location) }}" class="text-info text-decoration-none">Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PM2.5 -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-amber">
+                <div class="metric-title">
+                    <span>PM 2.5 Fine Particulate</span>
+                    <i class="bi bi-virus text-warning"></i>
+                </div>
+                <div class="metric-value">{{ aqi_data.pm25 }} <span class="fs-6 text-muted fw-normal">µg/m³</span></div>
+                <div class="metric-sub">Standard Limit: 30 µg/m³</div>
+            </div>
+        </div>
+
+        <!-- PM10 -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-amber">
+                <div class="metric-title">
+                    <span>PM 10 Coarse Dust</span>
+                    <i class="bi bi-clouds text-warning"></i>
+                </div>
+                <div class="metric-value">{{ aqi_data.pm10 }} <span class="fs-6 text-muted fw-normal">µg/m³</span></div>
+                <div class="metric-sub">Standard Limit: 60 µg/m³</div>
+            </div>
+        </div>
+
+        <!-- Temperature -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-rose">
+                <div class="metric-title">
+                    <span>Ambient Temperature</span>
+                    <i class="bi bi-thermometer-half text-danger"></i>
+                </div>
+                <div class="metric-value">{{ weather.temperature_c }} <span class="fs-6 text-muted fw-normal">°C</span></div>
+                <div class="metric-sub">Thermal Baseline: Seasonal</div>
+            </div>
+        </div>
+
+        <!-- Rainfall -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card">
+                <div class="metric-title">
+                    <span>24h Rainfall Total</span>
+                    <i class="bi bi-cloud-rain text-primary"></i>
+                </div>
+                <div class="metric-value">{{ weather.rainfall_mm }} <span class="fs-6 text-muted fw-normal">mm</span></div>
+                <div class="metric-sub">Monsoon Runoff Rate: Stable</div>
+            </div>
+        </div>
+
+        <!-- Humidity -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-emerald">
+                <div class="metric-title">
+                    <span>Relative Humidity</span>
+                    <i class="bi bi-moisture text-success"></i>
+                </div>
+                <div class="metric-value">{{ weather.humidity_pct }} <span class="fs-6 text-muted fw-normal">%</span></div>
+                <div class="metric-sub">Dew Point Conducive</div>
+            </div>
+        </div>
+
+        <!-- Water Availability -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-emerald">
+                <div class="metric-title">
+                    <span>Water Availability</span>
+                    <i class="bi bi-droplet-fill text-info"></i>
+                </div>
+                <div class="metric-value">{{ weather.water_availability_pct }} <span class="fs-6 text-muted fw-normal">%</span></div>
+                <div class="metric-sub">Reservoir Storage Capacity</div>
+            </div>
+        </div>
+
+        <!-- Power Availability -->
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="climatex-card metric-card accent-emerald">
+                <div class="metric-title">
+                    <span>Grid Power Uptime</span>
+                    <i class="bi bi-lightning-charge-fill text-warning"></i>
+                </div>
+                <div class="metric-value">{{ weather.power_availability_pct }} <span class="fs-6 text-muted fw-normal">%</span></div>
+                <div class="metric-sub">Substation Grid Status: Nominal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-4 mb-4">
+        <!-- AQI Trend Chart -->
+        <div class="col-lg-4">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-graph-up text-info me-2"></i> 7-Day AQI Trend</h5>
+                    <span class="badge bg-secondary small">Observed</span>
+                </div>
+                <div style="height: 240px; position: relative;">
+                    <canvas id="aqiTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temperature Trend Chart -->
+        <div class="col-lg-4">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-thermometer-sun text-danger me-2"></i> Temperature Trend (°C)</h5>
+                    <span class="badge bg-secondary small">Past Week</span>
+                </div>
+                <div style="height: 240px; position: relative;">
+                    <canvas id="tempTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rainfall Trend Chart -->
+        <div class="col-lg-4">
+            <div class="climatex-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-cloud-rain text-primary me-2"></i> Rainfall Trend (mm)</h5>
+                    <span class="badge bg-secondary small">Accumulated</span>
+                </div>
+                <div style="height: 240px; position: relative;">
+                    <canvas id="rainTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const citySelector = document.getElementById('citySelector');
+    citySelector.addEventListener('change', function() {
+        window.location.href = "{{ url_for('dashboard.dashboard') }}?location=" + this.value;
+    });
+
+    // Chart.js Trends Initialization
+    const aqiHistory = {{ aqi_data.history|tojson }};
+    const weatherData = {{ weather|tojson }};
+
+    const dates = aqiHistory.map(h => h.date.substring(5));
+    const aqiVals = aqiHistory.map(h => h.aqi);
+
+    // AQI Chart
+    new Chart(document.getElementById('aqiTrendChart'), {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'AQI',
+                data: aqiVals,
+                borderColor: '#06B6D4',
+                backgroundColor: 'rgba(6, 182, 212, 0.15)',
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: '#06B6D4',
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+            }
+        }
+    });
+
+    // Temp Chart
+    new Chart(document.getElementById('tempTrendChart'), {
+        type: 'line',
+        data: {
+            labels: weatherData.dates || dates,
+            datasets: [{
+                label: 'Temp (°C)',
+                data: weatherData.temp_trend,
+                borderColor: '#F87171',
+                backgroundColor: 'rgba(248, 113, 113, 0.15)',
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: '#F87171',
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+            }
+        }
+    });
+
+    // Rain Chart
+    new Chart(document.getElementById('rainTrendChart'), {
+        type: 'bar',
+        data: {
+            labels: weatherData.dates || dates,
+            datasets: [{
+                label: 'Rainfall (mm)',
+                data: weatherData.rainfall_trend,
+                backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
+                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+            }
+        }
+    });
+</script>
+{% endblock %}

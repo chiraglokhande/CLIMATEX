@@ -1,0 +1,58 @@
+{
+  "Pune": {
+    "temperature_c": 30.0,
+    "rainfall_mm": 100.0,
+    "humidity_pct": 74.0,
+    "wind_speed_kmh": 14.5,
+    "water_availability_pct": 80.0,
+    "power_availability_pct": 100.0,
+    "flood_risk_baseline": "Medium",
+    "heat_risk_baseline": "Low",
+    "water_risk_baseline": "Low",
+    "temp_trend": [28.5, 29.0, 29.5, 30.2, 31.0, 30.5, 30.0],
+    "rainfall_trend": [45.0, 60.0, 85.0, 110.0, 95.0, 80.0, 100.0],
+    "dates": ["Sep 11", "Sep 12", "Sep 13", "Sep 14", "Sep 15", "Sep 16", "Sep 17"]
+  },
+  "Mumbai": {
+    "temperature_c": 32.5,
+    "rainfall_mm": 160.0,
+    "humidity_pct": 88.0,
+    "wind_speed_kmh": 22.0,
+    "water_availability_pct": 85.0,
+    "power_availability_pct": 98.0,
+    "flood_risk_baseline": "High",
+    "heat_risk_baseline": "Medium",
+    "water_risk_baseline": "Low",
+    "temp_trend": [31.0, 31.5, 32.0, 33.0, 32.8, 32.0, 32.5],
+    "rainfall_trend": [90.0, 120.0, 145.0, 190.0, 175.0, 150.0, 160.0],
+    "dates": ["Sep 11", "Sep 12", "Sep 13", "Sep 14", "Sep 15", "Sep 16", "Sep 17"]
+  },
+  "Nashik": {
+    "temperature_c": 28.0,
+    "rainfall_mm": 55.0,
+    "humidity_pct": 68.0,
+    "wind_speed_kmh": 12.0,
+    "water_availability_pct": 75.0,
+    "power_availability_pct": 95.0,
+    "flood_risk_baseline": "Low",
+    "heat_risk_baseline": "Low",
+    "water_risk_baseline": "Medium",
+    "temp_trend": [26.5, 27.0, 27.5, 28.5, 29.0, 28.2, 28.0],
+    "rainfall_trend": [20.0, 35.0, 45.0, 60.0, 50.0, 40.0, 55.0],
+    "dates": ["Sep 11", "Sep 12", "Sep 13", "Sep 14", "Sep 15", "Sep 16", "Sep 17"]
+  },
+  "Nagpur": {
+    "temperature_c": 37.0,
+    "rainfall_mm": 35.0,
+    "humidity_pct": 52.0,
+    "wind_speed_kmh": 10.5,
+    "water_availability_pct": 60.0,
+    "power_availability_pct": 92.0,
+    "flood_risk_baseline": "Low",
+    "heat_risk_baseline": "High",
+    "water_risk_baseline": "High",
+    "temp_trend": [35.0, 36.0, 36.5, 38.0, 38.5, 37.5, 37.0],
+    "rainfall_trend": [10.0, 15.0, 25.0, 40.0, 30.0, 20.0, 35.0],
+    "dates": ["Sep 11", "Sep 12", "Sep 13", "Sep 14", "Sep 15", "Sep 16", "Sep 17"]
+  }
+}

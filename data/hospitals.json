@@ -1,0 +1,214 @@
+{
+  "Pune": [
+    {
+      "id": "pune_inf_1",
+      "name": "Sassoon General Hospital",
+      "type": "Hospital",
+      "lat": 18.5268,
+      "lon": 73.8742,
+      "capacity": 1296,
+      "flood_vulnerability": "Low",
+      "elevation_m": 560,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "pune_inf_2",
+      "name": "Deenanath Mangeshkar Hospital",
+      "type": "Hospital",
+      "lat": 18.4985,
+      "lon": 73.8315,
+      "capacity": 800,
+      "flood_vulnerability": "Medium",
+      "elevation_m": 548,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "pune_inf_3",
+      "name": "Ruby Hall Clinic (Camp)",
+      "type": "Hospital",
+      "lat": 18.5320,
+      "lon": 73.8780,
+      "capacity": 600,
+      "flood_vulnerability": "Low",
+      "elevation_m": 564,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "pune_inf_4",
+      "name": "Poona Hospital & Research Centre",
+      "type": "Hospital",
+      "lat": 18.5132,
+      "lon": 73.8475,
+      "capacity": 300,
+      "flood_vulnerability": "High",
+      "elevation_m": 541,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "pune_inf_5",
+      "name": "Sahyadri Super Speciality Hospital (Dec)",
+      "type": "Hospital",
+      "lat": 18.5165,
+      "lon": 73.8340,
+      "capacity": 250,
+      "flood_vulnerability": "Medium",
+      "elevation_m": 550,
+      "status": "Operational",
+      "criticality": "High"
+    },
+    {
+      "id": "pune_inf_6",
+      "name": "Shivaji Nagar Emergency Relief Shelter",
+      "type": "Shelter",
+      "lat": 18.5350,
+      "lon": 73.8420,
+      "capacity": 1500,
+      "flood_vulnerability": "Low",
+      "elevation_m": 568,
+      "status": "Standby",
+      "criticality": "High"
+    },
+    {
+      "id": "pune_inf_7",
+      "name": "Kothrud Disaster Relief Shelter #2",
+      "type": "Shelter",
+      "lat": 18.5020,
+      "lon": 73.8050,
+      "capacity": 2000,
+      "flood_vulnerability": "Low",
+      "elevation_m": 585,
+      "status": "Standby",
+      "criticality": "High"
+    },
+    {
+      "id": "pune_inf_8",
+      "name": "Sinhagad Road Community Relief Hall",
+      "type": "Shelter",
+      "lat": 18.4840,
+      "lon": 73.8240,
+      "capacity": 1200,
+      "flood_vulnerability": "High",
+      "elevation_m": 543,
+      "status": "Standby",
+      "criticality": "Medium"
+    },
+    {
+      "id": "pune_inf_9",
+      "name": "Parvati Water Treatment Plant",
+      "type": "Water Facility",
+      "lat": 18.4950,
+      "lon": 73.8480,
+      "capacity": 500,
+      "flood_vulnerability": "Low",
+      "elevation_m": 565,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "pune_inf_10",
+      "name": "Rasta Peth 220kV Grid Substation",
+      "type": "Power Station",
+      "lat": 18.5200,
+      "lon": 73.8680,
+      "capacity": 1000,
+      "flood_vulnerability": "Low",
+      "elevation_m": 560,
+      "status": "Operational",
+      "criticality": "Critical"
+    }
+  ],
+  "Mumbai": [
+    {
+      "id": "mum_inf_1",
+      "name": "KEM Hospital (Parel)",
+      "type": "Hospital",
+      "lat": 19.0028,
+      "lon": 72.8428,
+      "capacity": 1800,
+      "flood_vulnerability": "High",
+      "elevation_m": 5,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "mum_inf_2",
+      "name": "Lilavati Hospital (Bandra)",
+      "type": "Hospital",
+      "lat": 19.0515,
+      "lon": 72.8290,
+      "capacity": 314,
+      "flood_vulnerability": "Low",
+      "elevation_m": 12,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "mum_inf_3",
+      "name": "Bandra Kurla Emergency Shelter Complex",
+      "type": "Shelter",
+      "lat": 19.0650,
+      "lon": 72.8650,
+      "capacity": 3500,
+      "flood_vulnerability": "Medium",
+      "elevation_m": 8,
+      "status": "Standby",
+      "criticality": "High"
+    }
+  ],
+  "Nashik": [
+    {
+      "id": "nsk_inf_1",
+      "name": "Nashik Civil Hospital",
+      "type": "Hospital",
+      "lat": 19.9985,
+      "lon": 73.7850,
+      "capacity": 600,
+      "flood_vulnerability": "Low",
+      "elevation_m": 580,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "nsk_inf_2",
+      "name": "Panchavati Relief Center",
+      "type": "Shelter",
+      "lat": 20.0050,
+      "lon": 73.7920,
+      "capacity": 1000,
+      "flood_vulnerability": "High",
+      "elevation_m": 558,
+      "status": "Standby",
+      "criticality": "High"
+    }
+  ],
+  "Nagpur": [
+    {
+      "id": "ngp_inf_1",
+      "name": "Government Medical College & Hospital (GMCH)",
+      "type": "Hospital",
+      "lat": 21.1270,
+      "lon": 79.0960,
+      "capacity": 1400,
+      "flood_vulnerability": "Low",
+      "elevation_m": 315,
+      "status": "Operational",
+      "criticality": "Critical"
+    },
+    {
+      "id": "ngp_inf_2",
+      "name": "Sitabuldi Civic Center Relief Shelter",
+      "type": "Shelter",
+      "lat": 21.1440,
+      "lon": 79.0800,
+      "capacity": 1800,
+      "flood_vulnerability": "Medium",
+      "elevation_m": 308,
+      "status": "Standby",
+      "criticality": "High"
+    }
+  ]
+}

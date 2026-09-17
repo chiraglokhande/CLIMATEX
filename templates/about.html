@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}About CLIMATEX – System Architecture & AI Modeling{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <div class="d-inline-flex align-items-center gap-2 badge bg-info text-dark mb-2">
+            <i class="bi bi-shield-check"></i> System Documentation
+        </div>
+        <h1 class="display-5 fw-bold text-white">About CLIMATEX</h1>
+        <p class="lead text-secondary mx-auto" style="max-width: 750px;">
+            An AI-Assisted Climate Risk & Environmental Decision Support System designed for municipal resilience, multi-hazard simulation, and emergency response planning.
+        </p>
+    </div>
+
+    <!-- 2 Column Overview -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="climatex-card h-100 p-4">
+                <h4 class="fw-bold text-white mb-3"><i class="bi bi-bullseye text-info me-2"></i> Mission & Purpose</h4>
+                <p class="text-secondary small leading-relaxed">
+                    Urban centers face compounding environmental stressors — rapid cloudbursts, severe heat domes, persistent winter air inversions, and infrastructure bottlenecks. Traditional monitoring tools merely report current disasters after they occur.
+                </p>
+                <p class="text-secondary small leading-relaxed">
+                    <strong>CLIMATEX</strong> bridges the gap between passive sensor telemetry and proactive governance by introducing a <strong>What-If Climate Simulation Engine</strong>. Decision-makers can alter rainfall, temperature, particulate concentrations, and utility levels to evaluate potential flood zones, road choke points, hospital vulnerabilities, and citizen exposure in seconds.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="climatex-card h-100 p-4">
+                <h4 class="fw-bold text-white mb-3"><i class="bi bi-cpu-fill text-success me-2"></i> Explainable AI & Simulation Logic</h4>
+                <p class="text-secondary small leading-relaxed">
+                    CLIMATEX avoids opaque black-box predictions. The system leverages transparent mathematical and threshold-driven risk equations:
+                </p>
+                <ul class="text-secondary small d-flex flex-column gap-2 mb-0">
+                    <li><strong>Weighted Multi-Hazard Aggregation:</strong> Flood (30%), AQI (25%), Heat (20%), Water (15%), Power Grid (10%).</li>
+                    <li><strong>Compound Hazard Synergy:</strong> Non-linear risk amplification when multiple critical hazards coincide (e.g. Deluge + Power Outage).</li>
+                    <li><strong>Topological GIS Vulnerability:</strong> Evaluates road elevation profiles against hydraulic flood thresholds to suggest real-time alternatives.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tech Stack Grid -->
+    <div class="climatex-card mb-5 p-4">
+        <h4 class="fw-bold text-white mb-4"><i class="bi bi-stack text-warning me-2"></i> Technology Stack & Modularity</h4>
+        
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                    <i class="bi bi-code-square text-info fs-3 mb-2"></i>
+                    <h6 class="fw-bold text-white mb-1">Python 3 + Flask</h6>
+                    <div class="small text-muted">Modular Blueprints & REST API backend</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                    <i class="bi bi-database text-success fs-3 mb-2"></i>
+                    <h6 class="fw-bold text-white mb-1">SQLAlchemy ORM</h6>
+                    <div class="small text-muted">SQLite (Dev) / PostgreSQL ready</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                    <i class="bi bi-map text-warning fs-3 mb-2"></i>
+                    <h6 class="fw-bold text-white mb-1">Leaflet.js + OSM</h6>
+                    <div class="small text-muted">Interactive GIS layers, routes & polygons</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
+                    <i class="bi bi-bar-chart-line text-danger fs-3 mb-2"></i>
+                    <h6 class="fw-bold text-white mb-1">Chart.js + ReportLab</h6>
+                    <div class="small text-muted">Dynamic dashboards & PDF report exports</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety & Disclaimers -->
+    <div class="modelled-banner p-4">
+        <i class="bi bi-shield-exclamation text-warning fs-2 flex-shrink-0"></i>
+        <div>
+            <h5 class="fw-bold text-white mb-1">Safety & Accuracy Disclaimers</h5>
+            <p class="small text-info mb-0">
+                CLIMATEX is engineered as an educational, municipal decision-support, and scenario exploration system. All simulated parameters, flood boundaries, and road disruption statuses represent <strong>modelled estimations</strong> derived from baseline datasets. In active emergency scenarios, authorities must always cross-reference outputs with verified on-ground emergency dispatches and meteorological radar.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

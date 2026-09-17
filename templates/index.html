@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}CLIMATEX – Predict the Risk. Simulate the Future. Plan the Action.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 position-relative overflow-hidden">
+    <div class="container py-lg-5">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-3 rounded-pill" style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3);">
+                    <span class="badge bg-info text-dark rounded-pill px-2 py-1">Next-Gen</span>
+                    <span class="small fw-semibold text-info">AI Environmental Decision Support Platform</span>
+                </div>
+                
+                <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -0.03em; line-height: 1.1;">
+                    Predict the Risk.<br>
+                    <span style="background: linear-gradient(135deg, #38BDF8 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Simulate the Future.
+                    </span><br>
+                    Plan the Action.
+                </h1>
+
+                <p class="lead text-secondary mb-4" style="max-width: 600px; font-size: 1.15rem; line-height: 1.6;">
+                    An AI-assisted climate and environmental decision-support platform for monitoring AQI, understanding environmental risks, and simulating <strong>What-If climate scenarios</strong> to protect infrastructure and communities.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start mb-4">
+                    <a href="{{ url_for('simulator.simulator') }}" class="btn btn-climatex-glow btn-lg px-4">
+                        <i class="bi bi-cpu-fill me-1"></i> Explore Climate Simulator
+                    </a>
+                    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-climatex-outline btn-lg px-4">
+                        <i class="bi bi-speedometer2 me-1"></i> View Live Dashboard
+                    </a>
+                </div>
+
+                <div class="d-flex items-center gap-4 text-muted small pt-2 justify-content-center justify-content-lg-start">
+                    <div><i class="bi bi-check-circle-fill text-success me-1"></i> Multi-Factor Risk AI</div>
+                    <div><i class="bi bi-check-circle-fill text-info me-1"></i> GIS Spatial Layering</div>
+                    <div><i class="bi bi-check-circle-fill text-warning me-1"></i> Automated Decision Reports</div>
+                </div>
+            </div>
+
+            <!-- Interactive Live Preview Card -->
+            <div class="col-lg-5">
+                <div class="climatex-card position-relative p-4 theme-card-accent" style="border: 1px solid rgba(6, 182, 212, 0.25);">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
+                            <span class="fw-bold small text-uppercase tracking-wider" style="color: var(--heading-color);">Live Simulation Snapshot</span>
+                        </div>
+                        <span class="badge badge-risk badge-high">Modelled Result</span>
+                    </div>
+
+                    <div class="p-3 mb-3 rounded-3 theme-box">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small text-secondary"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Scenario Zone:</span>
+                            <strong style="color: var(--heading-color);">Pune Metropolitan (River Basin)</strong>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small text-secondary"><i class="bi bi-cloud-rain-heavy-fill text-info me-1"></i> Rainfall Surge:</span>
+                            <strong class="text-info">150 mm (+50%)</strong>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="small text-secondary"><i class="bi bi-wind text-warning me-1"></i> Air Quality (AQI):</span>
+                            <strong class="text-warning">185 (Poor)</strong>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 text-center mb-3">
+                        <div class="col-6">
+                            <div class="p-2 rounded-2" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <div class="small text-danger fw-bold">Flood Risk</div>
+                                <div class="fs-5 fw-extrabold text-danger">HIGH</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 rounded-2" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <div class="small text-warning fw-bold">Roads at Risk</div>
+                                <div class="fs-5 fw-extrabold text-warning">12 Corridors</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ url_for('simulator.results', location='Pune', rainfall=150, temperature=33, aqi=185, water=70, power=100) }}" class="btn btn-climatex-primary w-100 justify-content-center">
+                        Inspect Benchmark Scenario &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3 Core Pillars Section -->
+<section class="py-5" style="background: rgba(15, 23, 42, 0.5);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-info text-uppercase fw-bold letter-spacing-2">Modular Intelligence</h6>
+            <h2 class="display-6 fw-bold text-white">Three Core Pillars of CLIMATEX</h2>
+            <p class="text-secondary mx-auto" style="max-width: 600px;">
+                Engineered for municipal authorities, disaster management agencies, and urban planners to monitor, diagnose, and preempt climate threats.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Card 1: AQI Monitoring -->
+            <div class="col-md-4">
+                <div class="climatex-card h-100 d-flex flex-column justify-content-between p-4">
+                    <div>
+                        <div class="d-inline-flex p-3 rounded-3 mb-4" style="background: rgba(6, 182, 212, 0.15); color: #38BDF8; font-size: 1.8rem;">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <h4 class="fw-bold text-white mb-2">1. AQI Monitoring</h4>
+                        <p class="text-secondary small mb-4">
+                            Real-time tracking of ambient pollutants (PM2.5, PM10, NO2, SO2, CO, O3) across urban wards with live telemetry, trend analysis, and GIS hotspot mapping.
+                        </p>
+                    </div>
+                    <a href="{{ url_for('aqi.aqi_monitoring') }}" class="fw-bold text-info small d-inline-flex align-items-center gap-1">
+                        Open AQI Dashboard <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: AQI Solutions Engine -->
+            <div class="col-md-4">
+                <div class="climatex-card h-100 d-flex flex-column justify-content-between p-4">
+                    <div>
+                        <div class="d-inline-flex p-3 rounded-3 mb-4" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24; font-size: 1.8rem;">
+                            <i class="bi bi-lightbulb-fill"></i>
+                        </div>
+                        <h4 class="fw-bold text-white mb-2">2. AQI Solutions</h4>
+                        <p class="text-secondary small mb-4">
+                            Root-cause diagnostic engine answering "Why is AQI high?". Decomposes traffic, construction, industrial, and biomass emissions with prioritized municipal mitigation actions.
+                        </p>
+                    </div>
+                    <a href="{{ url_for('aqi.aqi_solutions') }}" class="fw-bold text-warning small d-inline-flex align-items-center gap-1">
+                        Explore Root Cause Engine <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: What-If Climate Simulator -->
+            <div class="col-md-4">
+                <div class="climatex-card h-100 d-flex flex-column justify-content-between p-4" style="border-color: rgba(6, 182, 212, 0.35);">
+                    <div>
+                        <div class="d-inline-flex p-3 rounded-3 mb-4" style="background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 1.8rem;">
+                            <i class="bi bi-sliders2-vertical"></i>
+                        </div>
+                        <div class="badge bg-success mb-2">Flagship Module</div>
+                        <h4 class="fw-bold text-white mb-2">3. What-If Simulator</h4>
+                        <p class="text-secondary small mb-4">
+                            Interactive parameter testing for extreme rainfall, heatwaves, drought, and power grid failures. Models road closures, hospital surges, and population exposure in real-time.
+                        </p>
+                    </div>
+                    <a href="{{ url_for('simulator.simulator') }}" class="fw-bold text-success small d-inline-flex align-items-center gap-1">
+                        Launch Simulator <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modelled Notice Banner -->
+<div class="container py-4">
+    <div class="modelled-banner">
+        <i class="bi bi-info-circle-fill fs-5"></i>
+        <div>
+            <strong>Transparent AI Simulation Engine:</strong> All risk scores, road accessibility indicators, and population exposure values are mathematically modelled decision-support estimates to aid disaster preparedness and strategic policy design.
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,197 @@
+{
+  "Pune": [
+    {
+      "id": "pune_rd_1",
+      "name": "Sinhagad Road (Riverbank Section)",
+      "coordinates": [[18.4901, 73.8315], [18.4812, 73.8210], [18.4720, 73.8115]],
+      "elevation_m": 542,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 120.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Satara Road Bypass"
+    },
+    {
+      "id": "pune_rd_2",
+      "name": "Karve Road (Deccan Gymkhana)",
+      "coordinates": [[18.5165, 73.8402], [18.5085, 73.8290], [18.5012, 73.8190]],
+      "elevation_m": 558,
+      "elevation_risk": "Medium",
+      "flood_threshold_mm": 160.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Paud Road Arterial"
+    },
+    {
+      "id": "pune_rd_3",
+      "name": "Dange Chowk - Hinjawadi Flyover Link",
+      "coordinates": [[18.6012, 73.7654], [18.5910, 73.7420], [18.5805, 73.7250]],
+      "elevation_m": 575,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 210.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Wakad Highway Underpass"
+    },
+    {
+      "id": "pune_rd_4",
+      "name": "Baba Bhide Bridge Low-Lying Causeway",
+      "coordinates": [[18.5190, 73.8495], [18.5182, 73.8520]],
+      "elevation_m": 538,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 110.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Z-Bridge / Lakdi Pul"
+    },
+    {
+      "id": "pune_rd_5",
+      "name": "Sangamwadi Bridge & Road",
+      "coordinates": [[18.5375, 73.8650], [18.5420, 73.8750]],
+      "elevation_m": 545,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 135.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Bund Garden Road"
+    },
+    {
+      "id": "pune_rd_6",
+      "name": "Nagar Road (Kalyani Nagar Junction)",
+      "coordinates": [[18.5480, 73.8990], [18.5550, 73.9180]],
+      "elevation_m": 560,
+      "elevation_risk": "Medium",
+      "flood_threshold_mm": 175.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Airport Road Connector"
+    },
+    {
+      "id": "pune_rd_7",
+      "name": "Shivajinagar Underpass",
+      "coordinates": [[18.5305, 73.8490], [18.5320, 73.8510]],
+      "elevation_m": 540,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 125.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "University Flyover Road"
+    },
+    {
+      "id": "pune_rd_8",
+      "name": "Katraj Ghat Link (NH 48)",
+      "coordinates": [[18.4510, 73.8560], [18.4350, 73.8620]],
+      "elevation_m": 680,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 250.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Old Katraj Tunnel Route"
+    }
+  ],
+  "Mumbai": [
+    {
+      "id": "mum_rd_1",
+      "name": "Hindmata Junction (Parel)",
+      "coordinates": [[19.0125, 72.8420], [19.0150, 72.8450]],
+      "elevation_m": 4,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 105.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Dr. Ambedkar Road Elevated Flyover"
+    },
+    {
+      "id": "mum_rd_2",
+      "name": "Milan Subway (Santacruz)",
+      "coordinates": [[19.0830, 72.8430], [19.0845, 72.8455]],
+      "elevation_m": 3,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 95.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Milan Flyover Bridge"
+    },
+    {
+      "id": "mum_rd_3",
+      "name": "Western Express Highway (Goregaon)",
+      "coordinates": [[19.1620, 72.8580], [19.1750, 72.8610]],
+      "elevation_m": 18,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 220.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "SV Road Northbound"
+    },
+    {
+      "id": "mum_rd_4",
+      "name": "Eastern Freeway (Chembur-CST)",
+      "coordinates": [[18.9650, 72.8480], [19.0250, 72.8850]],
+      "elevation_m": 22,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 260.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "P D'Mello Road"
+    },
+    {
+      "id": "mum_rd_5",
+      "name": "Kurla LBS Marg (Mithi River Basin)",
+      "coordinates": [[19.0680, 72.8790], [19.0780, 72.8850]],
+      "elevation_m": 5,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 115.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "SCLR Elevated Corridor"
+    }
+  ],
+  "Nashik": [
+    {
+      "id": "nsk_rd_1",
+      "name": "Godavari Riverbank Road (Ramkund)",
+      "coordinates": [[20.0070, 73.7915], [20.0095, 73.7940]],
+      "elevation_m": 555,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 110.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Panchavati Ring Road"
+    },
+    {
+      "id": "nsk_rd_2",
+      "name": "Mumbai-Agra Highway (Dwarka)",
+      "coordinates": [[19.9850, 73.8010], [19.9920, 73.8090]],
+      "elevation_m": 590,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 230.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Gangapur Road Radial"
+    }
+  ],
+  "Nagpur": [
+    {
+      "id": "ngp_rd_1",
+      "name": "Nag River Causeway (Sitabuldi)",
+      "coordinates": [[21.1420, 79.0810], [21.1450, 79.0860]],
+      "elevation_m": 305,
+      "elevation_risk": "High",
+      "flood_threshold_mm": 115.0,
+      "status": "Safe",
+      "is_emergency_route": false,
+      "alt_route": "Wardha Road Arterial"
+    },
+    {
+      "id": "ngp_rd_2",
+      "name": "Ring Road Inner Expressway",
+      "coordinates": [[21.1250, 79.0550], [21.1380, 79.0620]],
+      "elevation_m": 325,
+      "elevation_risk": "Low",
+      "flood_threshold_mm": 240.0,
+      "status": "Safe",
+      "is_emergency_route": true,
+      "alt_route": "Hingna Radial"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "Pune": {
+    "aqi": 120,
+    "category": "Moderate",
+    "pm25": 48.5,
+    "pm10": 85.2,
+    "no2": 32.1,
+    "so2": 14.8,
+    "co": 1.2,
+    "o3": 28.4,
+    "dominant_pollutant": "PM2.5",
+    "history": [
+      {"date": "2026-09-11", "aqi": 95, "pm25": 38.0, "pm10": 70.0},
+      {"date": "2026-09-12", "aqi": 105, "pm25": 42.0, "pm10": 75.0},
+      {"date": "2026-09-13", "aqi": 110, "pm25": 44.0, "pm10": 80.0},
+      {"date": "2026-09-14", "aqi": 115, "pm25": 46.0, "pm10": 82.0},
+      {"date": "2026-09-15", "aqi": 125, "pm25": 50.0, "pm10": 88.0},
+      {"date": "2026-09-16", "aqi": 118, "pm25": 47.0, "pm10": 84.0},
+      {"date": "2026-09-17", "aqi": 120, "pm25": 48.5, "pm10": 85.2}
+    ],
+    "hotspots": [
+      {"name": "Shivajinagar Junction", "lat": 18.5314, "lon": 73.8446, "aqi": 165, "dominant": "PM2.5", "type": "Traffic / Commercial"},
+      {"name": "Hadapsar Industrial Area", "lat": 18.5089, "lon": 73.9259, "aqi": 182, "dominant": "PM10", "type": "Industrial"},
+      {"name": "Bhosari MIDC", "lat": 18.6298, "lon": 73.8488, "aqi": 195, "dominant": "NO2 / PM2.5", "type": "Industrial & Heavy Transport"},
+      {"name": "Swargate Transit Hub", "lat": 18.5018, "lon": 73.8584, "aqi": 158, "dominant": "PM2.5", "type": "Bus Terminal & Traffic Congestion"},
+      {"name": "Kothrud Depot", "lat": 18.5074, "lon": 73.8077, "aqi": 110, "dominant": "PM10", "type": "Residential / Arterial Road"},
+      {"name": "Pashan Lake Area", "lat": 18.5385, "lon": 73.7856, "aqi": 78, "dominant": "O3", "type": "Eco-zone / Green Belt"}
+    ]
+  },
+  "Mumbai": {
+    "aqi": 168,
+    "category": "Moderate-Poor",
+    "pm25": 72.3,
+    "pm10": 134.0,
+    "no2": 45.6,
+    "so2": 22.4,
+    "co": 1.9,
+    "o3": 34.0,
+    "dominant_pollutant": "PM2.5",
+    "history": [
+      {"date": "2026-09-11", "aqi": 140, "pm25": 60.0, "pm10": 115.0},
+      {"date": "2026-09-12", "aqi": 155, "pm25": 68.0, "pm10": 125.0},
+      {"date": "2026-09-13", "aqi": 162, "pm25": 70.0, "pm10": 130.0},
+      {"date": "2026-09-14", "aqi": 175, "pm25": 76.0, "pm10": 140.0},
+      {"date": "2026-09-15", "aqi": 180, "pm25": 79.0, "pm10": 145.0},
+      {"date": "2026-09-16", "aqi": 172, "pm25": 74.0, "pm10": 138.0},
+      {"date": "2026-09-17", "aqi": 168, "pm25": 72.3, "pm10": 134.0}
+    ],
+    "hotspots": [
+      {"name": "BKC Crossing", "lat": 19.0607, "lon": 72.8683, "aqi": 210, "dominant": "PM2.5", "type": "High Commercial Traffic"},
+      {"name": "Chembur Mahul Corridor", "lat": 19.0182, "lon": 72.8938, "aqi": 235, "dominant": "SO2 / PM10", "type": "Refinery & Port Industrial"},
+      {"name": "Andheri West SV Road", "lat": 19.1197, "lon": 72.8468, "aqi": 185, "dominant": "PM2.5", "type": "Urban Traffic & Construction"},
+      {"name": "Worli Seafront", "lat": 19.0178, "lon": 72.8154, "aqi": 95, "dominant": "PM10", "type": "Coastal Zone"}
+    ]
+  },
+  "Nashik": {
+    "aqi": 88,
+    "category": "Satisfactory",
+    "pm25": 32.0,
+    "pm10": 62.0,
+    "no2": 21.0,
+    "so2": 11.5,
+    "co": 0.8,
+    "o3": 22.0,
+    "dominant_pollutant": "PM10",
+    "history": [
+      {"date": "2026-09-11", "aqi": 75, "pm25": 28.0, "pm10": 55.0},
+      {"date": "2026-09-12", "aqi": 80, "pm25": 30.0, "pm10": 58.0},
+      {"date": "2026-09-13", "aqi": 85, "pm25": 31.0, "pm10": 60.0},
+      {"date": "2026-09-14", "aqi": 92, "pm25": 34.0, "pm10": 65.0},
+      {"date": "2026-09-15", "aqi": 90, "pm25": 33.0, "pm10": 64.0},
+      {"date": "2026-09-16", "aqi": 86, "pm25": 31.5, "pm10": 61.0},
+      {"date": "2026-09-17", "aqi": 88, "pm25": 32.0, "pm10": 62.0}
+    ],
+    "hotspots": [
+      {"name": "Satpur MIDC", "lat": 19.9885, "lon": 73.7423, "aqi": 135, "dominant": "PM10", "type": "Industrial Area"},
+      {"name": "Dwarka Circle", "lat": 19.9872, "lon": 73.8038, "aqi": 128, "dominant": "PM2.5", "type": "Highway Traffic Junction"},
+      {"name": "Panchavati Old City", "lat": 20.0063, "lon": 73.7938, "aqi": 92, "dominant": "PM10", "type": "Commercial Market"}
+    ]
+  },
+  "Nagpur": {
+    "aqi": 142,
+    "category": "Moderate",
+    "pm25": 58.0,
+    "pm10": 105.0,
+    "no2": 38.0,
+    "so2": 19.0,
+    "co": 1.4,
+    "o3": 31.0,
+    "dominant_pollutant": "PM2.5",
+    "history": [
+      {"date": "2026-09-11", "aqi": 125, "pm25": 50.0, "pm10": 92.0},
+      {"date": "2026-09-12", "aqi": 130, "pm25": 52.0, "pm10": 96.0},
+      {"date": "2026-09-13", "aqi": 138, "pm25": 56.0, "pm10": 102.0},
+      {"date": "2026-09-14", "aqi": 145, "pm25": 60.0, "pm10": 108.0},
+      {"date": "2026-09-15", "aqi": 150, "pm25": 62.0, "pm10": 112.0},
+      {"date": "2026-09-16", "aqi": 144, "pm25": 59.0, "pm10": 106.0},
+      {"date": "2026-09-17", "aqi": 142, "pm25": 58.0, "pm10": 105.0}
+    ],
+    "hotspots": [
+      {"name": "Butibori Industrial Corridor", "lat": 20.9238, "lon": 78.9958, "aqi": 190, "dominant": "PM10 / SO2", "type": "Heavy Manufacturing"},
+      {"name": "Sitabuldi Market", "lat": 21.1466, "lon": 79.0832, "aqi": 155, "dominant": "PM2.5", "type": "Dense Commercial Traffic"},
+      {"name": "Hingna Road MIDC", "lat": 21.0967, "lon": 78.9882, "aqi": 168, "dominant": "PM2.5", "type": "Industrial Zone"}
+    ]
+  }
+}
