@@ -7,11 +7,10 @@
 {% block extra_head %}
 <style>
 /* ==========================================================
-   CLIMATEX - Pure Monochrome Frosted Glass Authentication
-   Dark Mode: Ethereal White Glass & White Text
-   Light Mode: Ethereal Frosted Glass & Pure BLACK Text in Box
-   Top Nav Title: Strictly Pure WHITE in Both Modes (No Capsule)
-   Options Strictly: "Login" and "Register"
+   CLIMATEX - Pure Frosted Glass Authentication
+   Soft Light Gray Accents for Light Theme (No Harsh Dark)
+   Strictly Zero Blue/Green Color
+   Pixel-Perfect Alignment for Login & Register
    ========================================================== */
 
 /* 100% Completely Transparent Top Nav (Zero Blur) */
@@ -113,18 +112,17 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 [data-theme="light"] .auth-glass-card {
-    background: rgba(255, 255, 255, 0.65) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border: 1px solid rgba(255, 255, 255, 0.85) !important;
     box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
-    color: #000000 !important;
 }
 
-/* Monochrome Frosted Switcher */
+/* Segmented Switcher */
 .auth-switch-container {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: var(--radius-full);
     padding: 3px;
     display: flex;
@@ -133,18 +131,18 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 [data-theme="light"] .auth-switch-container {
-    background: rgba(255, 255, 255, 0.45) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .auth-switch-btn {
     flex: 1;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(255, 255, 255, 0.75);
     font-weight: 600;
-    font-size: 0.86rem;
-    padding: 7px 14px;
+    font-size: 0.88rem;
+    padding: 7px 12px;
     border-radius: var(--radius-full);
     transition: all 0.22s ease;
     display: inline-flex;
@@ -152,39 +150,39 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     justify-content: center;
     gap: 6px;
     cursor: pointer;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .auth-switch-btn:hover {
-    color: #FFFFFF !important;
+    color: #FFFFFF;
 }
 
 [data-theme="light"] .auth-switch-btn {
-    color: rgba(0, 0, 0, 0.72) !important;
-    text-shadow: none !important;
-    font-weight: 700 !important;
+    color: #475569;
+    text-shadow: none;
 }
 
 [data-theme="light"] .auth-switch-btn:hover {
-    color: #000000 !important;
+    color: #0F172A;
 }
 
-/* Selected Tab: Frosted Glass Effect (Black Text in Light Mode, White Text in Dark Mode) */
+/* Dark Mode Active Tab */
 .auth-switch-btn.active {
-    background: rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.26) !important;
     color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
+/* Light Mode Active Tab: Soft Light Gray (NO dark effect) */
 [data-theme="light"] .auth-switch-btn.active {
-    background: rgba(255, 255, 255, 0.70) !important;
-    color: #000000 !important;
-    border: 1px solid rgba(0, 0, 0, 0.2) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
-    text-shadow: none !important;
-    font-weight: 800 !important;
+    background: rgba(241, 245, 249, 0.92) !important;
+    color: #1E293B !important;
+    border: 1px solid rgba(203, 213, 225, 0.95) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    text-shadow: none;
+    font-weight: 700;
 }
 
 /* Forms Viewport: Strictly Static and Vertically Centered */
@@ -222,23 +220,22 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     padding: 0.1rem 0;
 }
 
-/* Form Labels: Pixel-Perfect Alignment (Black in Light Mode) */
+/* Form Labels: Pixel-Perfect Alignment */
 .auth-label {
     font-size: 0.82rem;
     font-weight: 600;
     color: #FFFFFF !important;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     gap: 6px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
     line-height: 1.2;
 }
 
 [data-theme="light"] .auth-label {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 700 !important;
+    color: #0F172A !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
 }
 
 /* Input Group & Centered Icons */
@@ -256,23 +253,25 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     margin: auto 0;
     display: flex;
     align-items: center;
-    color: #FFFFFF !important;
+    justify-content: center;
+    height: 100%;
+    color: #FFFFFF;
     font-size: 0.92rem;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.9 !important;
+    opacity: 0.85;
 }
 
 [data-theme="light"] .auth-input-icon {
-    color: #000000 !important;
-    opacity: 0.75 !important;
+    color: #1E293B;
+    opacity: 0.75;
 }
 
-/* Transparent Inputs: Black Text in Light Mode */
+/* Transparent Inputs */
 .auth-input {
     height: 38px !important;
-    background: rgba(255, 255, 255, 0.10) !important;
-    border: 1px solid rgba(255, 255, 255, 0.32) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
     border-radius: 9px !important;
     color: #FFFFFF !important;
     font-size: 0.88rem !important;
@@ -283,34 +282,34 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 .auth-input::placeholder {
-    color: rgba(226, 232, 240, 0.7) !important;
+    color: rgba(226, 232, 240, 0.65) !important;
     font-weight: 400;
 }
 
 .auth-input:focus {
-    background: rgba(255, 255, 255, 0.22) !important;
-    border-color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.85) !important;
     box-shadow: 0 0 14px rgba(255, 255, 255, 0.35) !important;
     color: #FFFFFF !important;
     outline: none !important;
 }
 
 [data-theme="light"] .auth-input {
-    background: rgba(255, 255, 255, 0.55) !important;
-    border: 1px solid rgba(0, 0, 0, 0.22) !important;
-    color: #000000 !important;
-    font-weight: 600 !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+    border: 1px solid rgba(15, 23, 42, 0.25) !important;
+    color: #0F172A !important;
+    font-weight: 600;
 }
 
 [data-theme="light"] .auth-input::placeholder {
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: rgba(15, 23, 42, 0.6) !important;
+    font-weight: 450;
 }
 
 [data-theme="light"] .auth-input:focus {
-    background: rgba(255, 255, 255, 0.85) !important;
-    border-color: #000000 !important;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.18) !important;
-    color: #000000 !important;
+    background: #FFFFFF !important;
+    border-color: #0F172A !important;
+    box-shadow: 0 0 12px rgba(15, 23, 42, 0.2) !important;
 }
 
 /* Compact register inputs */
@@ -329,9 +328,10 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.75) !important;
+    color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     z-index: 2;
     padding: 0;
@@ -340,31 +340,29 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 .auth-password-toggle:hover {
-    color: #FFFFFF !important;
+    color: #FFFFFF;
 }
 
 [data-theme="light"] .auth-password-toggle {
-    color: #000000 !important;
-    opacity: 0.75 !important;
+    color: #475569;
 }
 
 [data-theme="light"] .auth-password-toggle:hover {
-    color: #000000 !important;
-    opacity: 1 !important;
+    color: #0F172A;
 }
 
-/* Secondary & Helper Text: Black in Light Mode */
+/* Secondary & Helper Text */
 .auth-subtext {
     color: #E2E8F0 !important;
     font-size: 0.82rem;
     font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 [data-theme="light"] .auth-subtext {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 600 !important;
+    color: #0F172A !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 .auth-white-link {
@@ -373,7 +371,6 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     font-weight: 700;
     font-size: 0.82rem;
     transition: opacity 0.2s ease;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 .auth-white-link:hover {
@@ -381,18 +378,10 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 [data-theme="light"] .auth-white-link {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 800 !important;
-    text-decoration: underline !important;
+    color: #0F172A !important;
 }
 
-[data-theme="light"] .auth-white-link:hover {
-    color: #000000 !important;
-    opacity: 0.75 !important;
-}
-
-/* Aligned Checkboxes: Black in Light Mode */
+/* Aligned Checkboxes */
 .auth-remember-item {
     display: inline-flex;
     align-items: center;
@@ -411,19 +400,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     cursor: pointer;
 }
 
-[data-theme="light"] .auth-remember-item {
-    color: #000000 !important;
-}
-
-[data-theme="light"] .auth-remember-item span {
-    color: #000000 !important;
-}
-
-[data-theme="light"] .auth-remember-item input[type="checkbox"] {
-    accent-color: #000000 !important;
-}
-
-/* Monochrome Glass Button (Black Text in Light Mode, Zero Dark Background) */
+/* Buttons (Dark Mode: Glass Frosted White) */
 .btn-auth-glass {
     height: 40px;
     background: rgba(255, 255, 255, 0.22) !important;
@@ -432,7 +409,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     color: #FFFFFF !important;
     border-radius: 9px;
     transition: all 0.22s ease;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     font-size: 0.92rem;
     font-weight: 700;
 }
@@ -445,20 +422,20 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     transform: translateY(-1px);
 }
 
+/* Buttons (Light Mode: Soft Light Gray, NO harsh dark) */
 [data-theme="light"] .btn-auth-glass {
-    background: rgba(255, 255, 255, 0.55) !important;
-    border: 1px solid rgba(0, 0, 0, 0.25) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 800 !important;
+    background: rgba(241, 245, 249, 0.92) !important;
+    border: 1px solid rgba(203, 213, 225, 0.95) !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08) !important;
+    color: #1E293B !important;
+    font-weight: 700;
+    text-shadow: none;
 }
 
 [data-theme="light"] .btn-auth-glass:hover {
-    background: rgba(255, 255, 255, 0.8) !important;
-    border-color: rgba(0, 0, 0, 0.45) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
-    color: #000000 !important;
+    background: #E2E8F0 !important;
+    border-color: #94A3B8 !important;
+    color: #0F172A !important;
 }
 
 /* Alert Box */
@@ -475,13 +452,6 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     align-items: flex-start;
     gap: 8px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-[data-theme="light"] .auth-alert {
-    background: rgba(255, 255, 255, 0.85) !important;
-    border: 1px solid rgba(0, 0, 0, 0.25) !important;
-    color: #000000 !important;
-    text-shadow: none !important;
 }
 
 @keyframes authFadeIn {
@@ -525,13 +495,13 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                 <div id="authDynamicAlertMsg" class="flex-grow-1"></div>
             </div>
 
-            <!-- Segmented Tab Switcher (Option Strictly: Login & Register) -->
+            <!-- Segmented Tab Switcher (Just "Login" and "Register") -->
             <div class="auth-switch-container mb-3">
                 <button type="button" class="auth-switch-btn {% if active_tab != 'register' %}active{% endif %}" id="tabBtnLogin" onclick="switchAuthTab('login')">
                     <i class="bi bi-box-arrow-in-right"></i> Login
                 </button>
                 <button type="button" class="auth-switch-btn {% if active_tab == 'register' %}active{% endif %}" id="tabBtnRegister" onclick="switchAuthTab('register')">
-                    <i class="bi bi-person-plus-fill"></i> Register
+                    <i class="bi bi-person-plus"></i> Register
                 </button>
             </div>
 
@@ -651,11 +621,11 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                         </div>
 
                         <button type="submit" class="btn btn-auth-glass w-100 mb-2 d-flex align-items-center justify-content-center gap-2" id="registerSubmitBtn">
-                            <i class="bi bi-person-check-fill"></i> Register
+                            <i class="bi bi-person-check"></i> Register
                         </button>
 
                         <div class="text-center">
-                            <span class="auth-subtext">Have an account?</span>
+                            <span class="auth-subtext">Already registered?</span>
                             <a href="javascript:void(0)" onclick="switchAuthTab('login')" class="auth-white-link ms-1">
                                 Login &rarr;
                             </a>
@@ -745,7 +715,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
             }
 
             const regBtn = document.getElementById('registerSubmitBtn');
-            regBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Registering...';
+            regBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Register...';
             regBtn.disabled = true;
         });
     }
@@ -754,7 +724,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     if (loginForm) {
         loginForm.addEventListener('submit', function () {
             const loginBtn = document.getElementById('loginSubmitBtn');
-            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Signing in...';
+            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Login...';
             loginBtn.disabled = true;
         });
     }

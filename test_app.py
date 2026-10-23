@@ -37,7 +37,7 @@ class ClimatexTestCase(unittest.TestCase):
         """Verify that first page shows only Login and Register, without feature links."""
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
-        # Options present (Strictly Login and Register)
+        # Options present (strictly Login and Register, no slashes)
         self.assertIn(b'Login', res.data)
         self.assertIn(b'Register', res.data)
         self.assertNotIn(b'256-bit Encrypted', res.data)
