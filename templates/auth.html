@@ -8,9 +8,9 @@
 <style>
 /* ==========================================================
    CLIMATEX - Pure Monochrome Frosted Glass Authentication
-   Strictly Zero Color (No Blue, No Green)
-   Zero Capsule on Title - Pure White in Both Light & Dark
-   Pixel-Perfect Symmetrical Alignment for Login & Register
+   Identical Frosted Selection & Button Effects Across Light & Dark
+   Strictly Zero Dark / Black Effect in Light Mode
+   Options Strictly "Login" and "Register"
    ========================================================== */
 
 /* 100% Completely Transparent Top Nav (Zero Blur) */
@@ -119,10 +119,11 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
-/* Monochrome Segmented Switcher (Zero Color) */
-.auth-switch-container {
-    background: rgba(255, 255, 255, 0.10);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+/* Monochrome Frosted Switcher (Identical Ethereal Glass Effect in Both Modes) */
+.auth-switch-container,
+[data-theme="light"] .auth-switch-container {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     border-radius: var(--radius-full);
     padding: 3px;
     display: flex;
@@ -130,19 +131,15 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     flex-shrink: 0;
 }
 
-[data-theme="light"] .auth-switch-container {
-    background: rgba(255, 255, 255, 0.55);
-    border-color: rgba(15, 23, 42, 0.22);
-}
-
-.auth-switch-btn {
+.auth-switch-btn,
+[data-theme="light"] .auth-switch-btn {
     flex: 1;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.8) !important;
     font-weight: 600;
-    font-size: 0.85rem;
-    padding: 7px 12px;
+    font-size: 0.86rem;
+    padding: 7px 14px;
     border-radius: var(--radius-full);
     transition: all 0.22s ease;
     display: inline-flex;
@@ -150,36 +147,22 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     justify-content: center;
     gap: 6px;
     cursor: pointer;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
-.auth-switch-btn:hover {
-    color: #FFFFFF;
-}
-
-[data-theme="light"] .auth-switch-btn {
-    color: #334155;
-    text-shadow: none;
-}
-
+.auth-switch-btn:hover,
 [data-theme="light"] .auth-switch-btn:hover {
-    color: #0F172A;
-}
-
-.auth-switch-btn.active {
-    background: rgba(255, 255, 255, 0.26) !important;
     color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.45) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
+/* Selected Tab: Identical Frosted Glass Effect in Both Light and Dark */
+.auth-switch-btn.active,
 [data-theme="light"] .auth-switch-btn.active {
-    background: rgba(15, 23, 42, 0.85) !important;
+    background: rgba(255, 255, 255, 0.28) !important;
     color: #FFFFFF !important;
-    border: 1px solid rgba(15, 23, 42, 0.95) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
-    text-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Forms Viewport: Strictly Static and Vertically Centered */
@@ -218,7 +201,8 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 /* Form Labels: Pixel-Perfect Alignment */
-.auth-label {
+.auth-label,
+[data-theme="light"] .auth-label {
     font-size: 0.82rem;
     font-weight: 600;
     color: #FFFFFF !important;
@@ -226,13 +210,8 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     display: flex;
     align-items: center;
     gap: 6px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95) !important;
     line-height: 1.2;
-}
-
-[data-theme="light"] .auth-label {
-    color: #0F172A !important;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
 }
 
 /* Input Group & Centered Icons */
@@ -242,7 +221,8 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     align-items: center;
 }
 
-.auth-input-icon {
+.auth-input-icon,
+[data-theme="light"] .auth-input-icon {
     position: absolute;
     left: 12px;
     top: 0;
@@ -250,23 +230,19 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     margin: auto 0;
     display: flex;
     align-items: center;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-size: 0.92rem;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.85;
+    opacity: 0.9 !important;
 }
 
-[data-theme="light"] .auth-input-icon {
-    color: #1E293B;
-    opacity: 0.75;
-}
-
-/* Transparent Inputs (Zero Color) */
-.auth-input {
+/* Transparent Inputs (Zero Color - Consistent in Both Light and Dark) */
+.auth-input,
+[data-theme="light"] .auth-input {
     height: 38px !important;
-    background: rgba(255, 255, 255, 0.09) !important;
-    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
     border-radius: 9px !important;
     color: #FFFFFF !important;
     font-size: 0.88rem !important;
@@ -276,45 +252,31 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     width: 100%;
 }
 
-.auth-input::placeholder {
-    color: rgba(226, 232, 240, 0.65) !important;
+.auth-input::placeholder,
+[data-theme="light"] .auth-input::placeholder {
+    color: rgba(226, 232, 240, 0.7) !important;
     font-weight: 400;
 }
 
-.auth-input:focus {
-    background: rgba(255, 255, 255, 0.18) !important;
-    border-color: rgba(255, 255, 255, 0.85) !important;
+.auth-input:focus,
+[data-theme="light"] .auth-input:focus {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0 0 14px rgba(255, 255, 255, 0.35) !important;
     color: #FFFFFF !important;
     outline: none !important;
 }
 
-[data-theme="light"] .auth-input {
-    background: rgba(255, 255, 255, 0.75) !important;
-    border: 1px solid rgba(15, 23, 42, 0.25) !important;
-    color: #0F172A !important;
-    font-weight: 600;
-}
-
-[data-theme="light"] .auth-input::placeholder {
-    color: rgba(15, 23, 42, 0.6) !important;
-    font-weight: 450;
-}
-
-[data-theme="light"] .auth-input:focus {
-    background: #FFFFFF !important;
-    border-color: #0F172A !important;
-    box-shadow: 0 0 12px rgba(15, 23, 42, 0.2) !important;
-}
-
 /* Compact register inputs */
-.auth-input-sm {
+.auth-input-sm,
+[data-theme="light"] .auth-input-sm {
     height: 35px !important;
     padding: 4px 10px 4px 34px !important;
     font-size: 0.84rem !important;
 }
 
-.auth-password-toggle {
+.auth-password-toggle,
+[data-theme="light"] .auth-password-toggle {
     position: absolute;
     right: 12px;
     top: 0;
@@ -325,7 +287,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     justify-content: center;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
     cursor: pointer;
     z-index: 2;
     padding: 0;
@@ -333,46 +295,33 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     font-size: 0.95rem;
 }
 
-.auth-password-toggle:hover {
-    color: #FFFFFF;
-}
-
-[data-theme="light"] .auth-password-toggle {
-    color: #475569;
-}
-
+.auth-password-toggle:hover,
 [data-theme="light"] .auth-password-toggle:hover {
-    color: #0F172A;
+    color: #FFFFFF !important;
 }
 
 /* Secondary & Helper Text */
-.auth-subtext {
+.auth-subtext,
+[data-theme="light"] .auth-subtext {
     color: #E2E8F0 !important;
     font-size: 0.82rem;
     font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
-[data-theme="light"] .auth-subtext {
-    color: #0F172A !important;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-}
-
-.auth-white-link {
+.auth-white-link,
+[data-theme="light"] .auth-white-link {
     color: #FFFFFF !important;
     text-decoration: underline !important;
     font-weight: 700;
     font-size: 0.82rem;
     transition: opacity 0.2s ease;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
-.auth-white-link:hover {
+.auth-white-link:hover,
+[data-theme="light"] .auth-white-link:hover {
     opacity: 0.85;
-}
-
-[data-theme="light"] .auth-white-link {
-    color: #0F172A !important;
 }
 
 /* Aligned Checkboxes */
@@ -394,8 +343,9 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     cursor: pointer;
 }
 
-/* Monochrome Glass Button (Zero Color) */
-.btn-auth-glass {
+/* Monochrome Glass Button (Identical in Both Light and Dark - Zero Dark Effect) */
+.btn-auth-glass,
+[data-theme="light"] .btn-auth-glass {
     height: 40px;
     background: rgba(255, 255, 255, 0.22) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -403,30 +353,18 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     color: #FFFFFF !important;
     border-radius: 9px;
     transition: all 0.22s ease;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+    font-size: 0.92rem;
     font-weight: 700;
 }
 
-.btn-auth-glass:hover {
+.btn-auth-glass:hover,
+[data-theme="light"] .btn-auth-glass:hover {
     background: rgba(255, 255, 255, 0.34) !important;
     border-color: rgba(255, 255, 255, 0.8) !important;
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
     transform: translateY(-1px);
-}
-
-[data-theme="light"] .btn-auth-glass {
-    background: rgba(15, 23, 42, 0.88) !important;
-    border: 1px solid rgba(15, 23, 42, 0.95) !important;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15) !important;
-    color: #FFFFFF !important;
-    text-shadow: none;
-}
-
-[data-theme="light"] .btn-auth-glass:hover {
-    background: #0F172A !important;
-    border-color: #000000 !important;
 }
 
 /* Alert Box */
@@ -486,13 +424,13 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                 <div id="authDynamicAlertMsg" class="flex-grow-1"></div>
             </div>
 
-            <!-- Segmented Tab Switcher (Monochrome - Zero Color) -->
+            <!-- Segmented Tab Switcher (Option Strictly: Login & Register) -->
             <div class="auth-switch-container mb-3">
                 <button type="button" class="auth-switch-btn {% if active_tab != 'register' %}active{% endif %}" id="tabBtnLogin" onclick="switchAuthTab('login')">
-                    <i class="bi bi-box-arrow-in-right"></i> Sign In / Login
+                    <i class="bi bi-box-arrow-in-right"></i> Login
                 </button>
                 <button type="button" class="auth-switch-btn {% if active_tab == 'register' %}active{% endif %}" id="tabBtnRegister" onclick="switchAuthTab('register')">
-                    <i class="bi bi-person-plus-fill"></i> Register / Create
+                    <i class="bi bi-person-plus-fill"></i> Register
                 </button>
             </div>
 
@@ -535,12 +473,12 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                                 <span>Remember</span>
                             </label>
                             <a href="javascript:void(0)" onclick="switchAuthTab('register')" class="auth-white-link">
-                                Create account &rarr;
+                                Register &rarr;
                             </a>
                         </div>
 
                         <button type="submit" class="btn btn-auth-glass w-100 d-flex align-items-center justify-content-center gap-2" id="loginSubmitBtn">
-                            <i class="bi bi-box-arrow-in-right"></i> Sign In to Platform
+                            <i class="bi bi-box-arrow-in-right"></i> Login
                         </button>
                     </form>
                 </div>
@@ -612,13 +550,13 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                         </div>
 
                         <button type="submit" class="btn btn-auth-glass w-100 mb-2 d-flex align-items-center justify-content-center gap-2" id="registerSubmitBtn">
-                            <i class="bi bi-person-check-fill"></i> Register / Create Account
+                            <i class="bi bi-person-check-fill"></i> Register
                         </button>
 
                         <div class="text-center">
-                            <span class="auth-subtext">Already registered?</span>
+                            <span class="auth-subtext">Have an account?</span>
                             <a href="javascript:void(0)" onclick="switchAuthTab('login')" class="auth-white-link ms-1">
-                                Sign in here &rarr;
+                                Login &rarr;
                             </a>
                         </div>
                     </form>
