@@ -449,24 +449,25 @@ a:hover {
 .climatex-brand-name {
     color: #FFFFFF !important;
     font-weight: 800;
-    font-size: 1.35rem;
-    letter-spacing: 0.05em;
-    padding: 5px 16px;
-    border-radius: 9999px;
-    background: rgba(0, 0, 0, 0.40);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
+    font-size: 1.45rem;
+    letter-spacing: -0.02em;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.85);
     display: inline-block;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
 [data-theme="light"] .climatex-brand-name {
-    color: #FFFFFF !important;
-    background: rgba(15, 23, 42, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    color: #FFFFFF !important; /* Pure white in light mode, NOT black, NOT in capsule */
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 18px rgba(0, 0, 0, 0.9);
 }
 
 .brand-icon {

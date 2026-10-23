@@ -8,9 +8,9 @@
 <style>
 /* ==========================================================
    CLIMATEX - Pure Monochrome Frosted Glass Authentication
-   Strictly Zero Color (No Blue, No Green, No Accents)
-   Completely Transparent - Zero Blur on Heading
-   Static Box Dimensions (No Size Jump)
+   Strictly Zero Color (No Blue, No Green)
+   Zero Capsule on Title - Pure White in Both Light & Dark
+   Pixel-Perfect Symmetrical Alignment for Login & Register
    ========================================================== */
 
 /* 100% Completely Transparent Top Nav (Zero Blur) */
@@ -24,32 +24,40 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    padding-top: 1rem !important;
+    padding-top: 1.1rem !important;
     padding-bottom: 0.25rem !important;
 }
 
-/* App Name in Top Nav: Clearly Visible in Light & Dark (NOT made dark) */
-.climatex-brand-name {
+/* App Name: NO Capsule, NOT Black in Light Mode, Pure WHITE in Both Modes */
+.climatex-brand-name,
+.navbar-brand span,
+.navbar-brand {
     color: #FFFFFF !important;
-    font-weight: 800;
-    font-size: 1.35rem;
-    letter-spacing: 0.05em;
-    padding: 5px 16px;
-    border-radius: 9999px;
-    background: rgba(0, 0, 0, 0.40);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
-    display: inline-block;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    letter-spacing: -0.02em !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.85) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-[data-theme="light"] .climatex-brand-name {
-    color: #FFFFFF !important; /* Preserved white, NOT made dark */
-    background: rgba(15, 23, 42, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+[data-theme="light"] .climatex-brand-name,
+[data-theme="light"] .navbar-brand span,
+[data-theme="light"] .navbar-brand {
+    color: #FFFFFF !important; /* Pure WHITE in light mode too - NOT black, NOT in capsule */
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 18px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Moving Leaves & Wind Canvas */
@@ -75,18 +83,18 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     z-index: 5;
 }
 
-/* Static Modal Card Box (Strictly No Resizing) */
+/* Static Modal Card Box (Strictly Locked Size) */
 .auth-center-card-box {
-    width: 415px;
+    width: 420px;
     max-width: calc(100vw - 2rem);
 }
 
-/* Completely Transparent Monochrome Glass Card - Zero Blur & Static Size */
+/* Completely Transparent Glass Card - Zero Blur & Strictly Static Size */
 .auth-glass-card {
     width: 100%;
-    height: 385px;
-    min-height: 385px;
-    max-height: 385px;
+    height: 415px;
+    min-height: 415px;
+    max-height: 415px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -97,7 +105,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
     border-radius: 18px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-    padding: 1.5rem 1.65rem;
+    padding: 1.45rem 1.65rem;
     position: relative;
     z-index: 5;
     overflow: hidden;
@@ -119,6 +127,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     padding: 3px;
     display: flex;
     position: relative;
+    flex-shrink: 0;
 }
 
 [data-theme="light"] .auth-switch-container {
@@ -132,8 +141,8 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     background: transparent;
     color: rgba(255, 255, 255, 0.75);
     font-weight: 600;
-    font-size: 0.86rem;
-    padding: 7px 14px;
+    font-size: 0.85rem;
+    padding: 7px 12px;
     border-radius: var(--radius-full);
     transition: all 0.22s ease;
     display: inline-flex;
@@ -173,16 +182,52 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     text-shadow: none;
 }
 
-/* Form Labels: High Contrast & Pure Monochrome */
+/* Forms Viewport: Strictly Static and Vertically Centered */
+.auth-forms-viewport {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.auth-forms-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.auth-form-tab {
+    width: 100%;
+    animation: authFadeIn 0.22s ease-out;
+}
+
+/* Symmetrical Form Alignments */
+.auth-login-balanced {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.25rem 0;
+}
+
+.auth-register-balanced {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.1rem 0;
+}
+
+/* Form Labels: Pixel-Perfect Alignment */
 .auth-label {
-    font-size: 0.84rem;
-    font-weight: 700;
+    font-size: 0.82rem;
+    font-weight: 600;
     color: #FFFFFF !important;
     margin-bottom: 4px;
     display: flex;
     align-items: center;
     gap: 6px;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+    line-height: 1.2;
 }
 
 [data-theme="light"] .auth-label {
@@ -190,17 +235,23 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
 }
 
+/* Input Group & Centered Icons */
 .auth-input-group {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .auth-input-icon {
     position: absolute;
     left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
     color: #FFFFFF;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     pointer-events: none;
     z-index: 2;
     opacity: 0.85;
@@ -222,6 +273,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     padding: 6px 12px 6px 36px !important;
     transition: all 0.2s ease;
     font-weight: 600;
+    width: 100%;
 }
 
 .auth-input::placeholder {
@@ -255,8 +307,9 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     box-shadow: 0 0 12px rgba(15, 23, 42, 0.2) !important;
 }
 
+/* Compact register inputs */
 .auth-input-sm {
-    height: 34px !important;
+    height: 35px !important;
     padding: 4px 10px 4px 34px !important;
     font-size: 0.84rem !important;
 }
@@ -264,11 +317,15 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 .auth-password-toggle {
     position: absolute;
     right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     z-index: 2;
     padding: 0;
@@ -318,25 +375,28 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     color: #0F172A !important;
 }
 
-/* Checkbox (Monochrome) */
+/* Aligned Checkboxes */
 .auth-remember-item {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     cursor: pointer;
     margin: 0;
+    font-size: 0.82rem;
     user-select: none;
 }
 
 .auth-remember-item input[type="checkbox"] {
     width: 15px;
     height: 15px;
+    margin: 0;
     accent-color: #FFFFFF;
     cursor: pointer;
 }
 
 /* Monochrome Glass Button (Zero Color) */
 .btn-auth-glass {
+    height: 40px;
     background: rgba(255, 255, 255, 0.22) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3) !important;
@@ -344,6 +404,8 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     border-radius: 9px;
     transition: all 0.22s ease;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 .btn-auth-glass:hover {
@@ -373,7 +435,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     border: 1px solid rgba(255, 255, 255, 0.35);
     color: #FFFFFF;
     border-radius: 8px;
-    padding: 6px 12px;
+    padding: 5px 12px;
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -381,34 +443,6 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     align-items: flex-start;
     gap: 8px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-/* Static Inner Forms Viewport (Prevents any Box Resizing or Shifting) */
-.auth-forms-viewport {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    min-height: 0;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-.auth-forms-viewport::-webkit-scrollbar {
-    display: none;
-}
-
-/* Perfectly Balanced Form in Login Box */
-.auth-form-tab {
-    width: 100%;
-    animation: authFadeIn 0.22s ease-out;
-}
-
-.auth-login-balanced {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0.2rem 0;
 }
 
 @keyframes authFadeIn {
@@ -505,15 +539,15 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                             </a>
                         </div>
 
-                        <button type="submit" class="btn btn-auth-glass w-100 py-2 fs-6 fw-bold d-flex align-items-center justify-content-center gap-2" id="loginSubmitBtn">
+                        <button type="submit" class="btn btn-auth-glass w-100 d-flex align-items-center justify-content-center gap-2" id="loginSubmitBtn">
                             <i class="bi bi-box-arrow-in-right"></i> Sign In to Platform
                         </button>
                     </form>
                 </div>
 
-                <!-- OPTION 2: REGISTER FORM -->
+                <!-- OPTION 2: REGISTER FORM (Perfect Alignment Inside Box) -->
                 <div id="registerFormContainer" class="auth-form-tab {% if active_tab != 'register' %}d-none{% endif %}">
-                    <form method="POST" action="{{ url_for('auth.register') }}" id="registerForm">
+                    <form method="POST" action="{{ url_for('auth.register') }}" id="registerForm" class="auth-register-balanced">
                         
                         <div class="row g-2 mb-2">
                             <div class="col-6">
@@ -577,7 +611,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-auth-glass w-100 py-2 fs-6 fw-bold mb-2 d-flex align-items-center justify-content-center gap-2" id="registerSubmitBtn">
+                        <button type="submit" class="btn btn-auth-glass w-100 mb-2 d-flex align-items-center justify-content-center gap-2" id="registerSubmitBtn">
                             <i class="bi bi-person-check-fill"></i> Register / Create Account
                         </button>
 
