@@ -8,3 +8,6 @@ __pycache__/
 *.db
 .vscode/
 .idea/
+.env
+.env.*
+!.env.example

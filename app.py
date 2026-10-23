@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, send_from_directory, request, redirect, url_for, jsonify, flash
 from config import Config
 from models.database import db, init_db
 from models.models import Location, User, Scenario, ScenarioResult
@@ -23,6 +23,61 @@ def create_app(config_class=Config):
     # Register Blueprints
     register_blueprints(app)
 
+    # Strict Feature Access Control: All features require authentication
+    @app.before_request
+    def enforce_feature_login():
+        public_endpoints = {
+            'main.index',
+            'auth.login',
+            'auth.register',
+            'auth.demo_login',
+            'auth.logout',
+            'serve_css',
+            'static'
+        }
+
+        endpoint = request.endpoint
+        if endpoint and (endpoint in public_endpoints or endpoint.startswith('static')):
+            return None
+
+        # Allow static files and asset requests
+        path = request.path
+        if (
+            path.startswith('/static/') or
+            path.startswith('/css/') or
+            path == '/favicon.ico' or
+            path in ('/', '/login', '/register', '/demo-login', '/logout')
+        ):
+            return None
+
+        # If user is not logged in, block access to any feature!
+        if not session.get('user_id'):
+            if path.startswith('/api/'):
+                return jsonify({
+                    'status': 'error',
+                    'message': 'Unauthorized: Access restricted. Please sign in or register to use CLIMATEX features.',
+                    'redirect': url_for('auth.login')
+                }), 401
+
+            flash('Please sign in or create an account to access CLIMATEX platform features.', 'warning')
+            target = request.full_path if request.query_string else request.path
+            return redirect(url_for('auth.login', next=target))
+
+    # Global Context Processor for Authentication
+    @app.context_processor
+    def inject_auth_globals():
+        current_user = None
+        user_id = session.get('user_id')
+        if user_id:
+            try:
+                current_user = db.session.get(User, user_id)
+            except Exception:
+                current_user = None
+        return {
+            'current_user': current_user,
+            'is_authenticated': current_user is not None
+        }
+
     # Seed Database on Startup if needed
     with app.app_context():
         seed_database()
@@ -45,8 +100,21 @@ def create_app(config_class=Config):
     return app
 
 def seed_database():
-    """Populate default reference locations and initial demo scenario if empty."""
+    """Populate default reference locations, demo analyst user, and initial demo scenario if empty."""
     try:
+        # Seed Default Analyst User for instant demo/testing
+        if User.query.count() == 0:
+            demo_user = User(
+                username="analyst_demo",
+                email="analyst@climatex.org",
+                full_name="Dr. Aisha Roy",
+                role="Senior Environmental Analyst"
+            )
+            demo_user.set_password("Climatex2026!")
+            db.session.add(demo_user)
+            db.session.commit()
+            print("[Database] Seeded demo analyst user: analyst_demo / Climatex2026!")
+
         if Location.query.count() == 0:
             locations = [
                 Location(name="Pune", state="Maharashtra", lat=18.5204, lon=73.8567, elevation_m=560.0, base_population=3950000),

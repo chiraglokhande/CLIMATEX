@@ -1,0 +1,689 @@
+{% extends "base.html" %}
+
+{% block title %}CLIMATEX – Login or Register{% endblock %}
+
+{% block body_class %}home-page-bg auth-standalone-page{% endblock %}
+
+{% block extra_head %}
+<style>
+/* ==========================================================
+   CLIMATEX - Pure Monochrome Frosted Glass Authentication
+   Strictly Zero Color (No Blue, No Green, No Accents)
+   Completely Transparent - Zero Blur on Heading
+   Static Box Dimensions (No Size Jump)
+   ========================================================== */
+
+/* 100% Completely Transparent Top Nav (Zero Blur) */
+.auth-nav-transparent,
+.climatex-nav.auth-nav-transparent,
+body.home-page-bg .climatex-nav.auth-nav-transparent {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding-top: 1rem !important;
+    padding-bottom: 0.25rem !important;
+}
+
+/* App Name in Top Nav: Clearly Visible in Light & Dark (NOT made dark) */
+.climatex-brand-name {
+    color: #FFFFFF !important;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: 0.05em;
+    padding: 5px 16px;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.40);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
+    display: inline-block;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="light"] .climatex-brand-name {
+    color: #FFFFFF !important; /* Preserved white, NOT made dark */
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Moving Leaves & Wind Canvas */
+.leaves-wind-canvas,
+#leavesWindCanvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 30 !important;
+}
+
+/* Center Viewport Alignment */
+.auth-center-wrapper {
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Static Modal Card Box (Strictly No Resizing) */
+.auth-center-card-box {
+    width: 415px;
+    max-width: calc(100vw - 2rem);
+}
+
+/* Completely Transparent Monochrome Glass Card - Zero Blur & Static Size */
+.auth-glass-card {
+    width: 100%;
+    height: 385px;
+    min-height: 385px;
+    max-height: 385px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: rgba(6, 12, 22, 0.46) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+    padding: 1.5rem 1.65rem;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+[data-theme="light"] .auth-glass-card {
+    background: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Monochrome Segmented Switcher (Zero Color) */
+.auth-switch-container {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: var(--radius-full);
+    padding: 3px;
+    display: flex;
+    position: relative;
+}
+
+[data-theme="light"] .auth-switch-container {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(15, 23, 42, 0.22);
+}
+
+.auth-switch-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    font-size: 0.86rem;
+    padding: 7px 14px;
+    border-radius: var(--radius-full);
+    transition: all 0.22s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.auth-switch-btn:hover {
+    color: #FFFFFF;
+}
+
+[data-theme="light"] .auth-switch-btn {
+    color: #334155;
+    text-shadow: none;
+}
+
+[data-theme="light"] .auth-switch-btn:hover {
+    color: #0F172A;
+}
+
+.auth-switch-btn.active {
+    background: rgba(255, 255, 255, 0.26) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .auth-switch-btn.active {
+    background: rgba(15, 23, 42, 0.85) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(15, 23, 42, 0.95) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    text-shadow: none;
+}
+
+/* Form Labels: High Contrast & Pure Monochrome */
+.auth-label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="light"] .auth-label {
+    color: #0F172A !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+.auth-input-group {
+    position: relative;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.85;
+}
+
+[data-theme="light"] .auth-input-icon {
+    color: #1E293B;
+    opacity: 0.75;
+}
+
+/* Transparent Inputs (Zero Color) */
+.auth-input {
+    height: 38px !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    border-radius: 9px !important;
+    color: #FFFFFF !important;
+    font-size: 0.88rem !important;
+    padding: 6px 12px 6px 36px !important;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.auth-input::placeholder {
+    color: rgba(226, 232, 240, 0.65) !important;
+    font-weight: 400;
+}
+
+.auth-input:focus {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.35) !important;
+    color: #FFFFFF !important;
+    outline: none !important;
+}
+
+[data-theme="light"] .auth-input {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border: 1px solid rgba(15, 23, 42, 0.25) !important;
+    color: #0F172A !important;
+    font-weight: 600;
+}
+
+[data-theme="light"] .auth-input::placeholder {
+    color: rgba(15, 23, 42, 0.6) !important;
+    font-weight: 450;
+}
+
+[data-theme="light"] .auth-input:focus {
+    background: #FFFFFF !important;
+    border-color: #0F172A !important;
+    box-shadow: 0 0 12px rgba(15, 23, 42, 0.2) !important;
+}
+
+.auth-input-sm {
+    height: 34px !important;
+    padding: 4px 10px 4px 34px !important;
+    font-size: 0.84rem !important;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    transition: color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.auth-password-toggle:hover {
+    color: #FFFFFF;
+}
+
+[data-theme="light"] .auth-password-toggle {
+    color: #475569;
+}
+
+[data-theme="light"] .auth-password-toggle:hover {
+    color: #0F172A;
+}
+
+/* Secondary & Helper Text */
+.auth-subtext {
+    color: #E2E8F0 !important;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="light"] .auth-subtext {
+    color: #0F172A !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.auth-white-link {
+    color: #FFFFFF !important;
+    text-decoration: underline !important;
+    font-weight: 700;
+    font-size: 0.82rem;
+    transition: opacity 0.2s ease;
+}
+
+.auth-white-link:hover {
+    opacity: 0.85;
+}
+
+[data-theme="light"] .auth-white-link {
+    color: #0F172A !important;
+}
+
+/* Checkbox (Monochrome) */
+.auth-remember-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+    user-select: none;
+}
+
+.auth-remember-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Monochrome Glass Button (Zero Color) */
+.btn-auth-glass {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3) !important;
+    color: #FFFFFF !important;
+    border-radius: 9px;
+    transition: all 0.22s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.btn-auth-glass:hover {
+    background: rgba(255, 255, 255, 0.34) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+}
+
+[data-theme="light"] .btn-auth-glass {
+    background: rgba(15, 23, 42, 0.88) !important;
+    border: 1px solid rgba(15, 23, 42, 0.95) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15) !important;
+    color: #FFFFFF !important;
+    text-shadow: none;
+}
+
+[data-theme="light"] .btn-auth-glass:hover {
+    background: #0F172A !important;
+    border-color: #000000 !important;
+}
+
+/* Alert Box */
+.auth-alert {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Static Inner Forms Viewport (Prevents any Box Resizing or Shifting) */
+.auth-forms-viewport {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.auth-forms-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+/* Perfectly Balanced Form in Login Box */
+.auth-form-tab {
+    width: 100%;
+    animation: authFadeIn 0.22s ease-out;
+}
+
+.auth-login-balanced {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.2rem 0;
+}
+
+@keyframes authFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Ambient Dynamic Wind & Moving Leaves Canvas -->
+<canvas id="leavesWindCanvas" class="leaves-wind-canvas" aria-hidden="true"></canvas>
+
+<!-- Perfectly Sized & Centered Single-Focus Authentication Card (No Header / Logo) -->
+<div class="auth-center-wrapper">
+    <div class="auth-center-card-box">
+        
+        <div class="auth-glass-card">
+
+            <!-- Flashed Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="auth-alert">
+                            <i class="bi bi-info-circle-fill"></i>
+                            <div class="flex-grow-1">{{ message }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Dynamic Alert -->
+            <div id="authDynamicAlert" class="auth-alert d-none">
+                <i class="bi bi-exclamation-circle-fill" id="authDynamicAlertIcon"></i>
+                <div id="authDynamicAlertMsg" class="flex-grow-1"></div>
+            </div>
+
+            <!-- Segmented Tab Switcher (Monochrome - Zero Color) -->
+            <div class="auth-switch-container mb-3">
+                <button type="button" class="auth-switch-btn {% if active_tab != 'register' %}active{% endif %}" id="tabBtnLogin" onclick="switchAuthTab('login')">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign In / Login
+                </button>
+                <button type="button" class="auth-switch-btn {% if active_tab == 'register' %}active{% endif %}" id="tabBtnRegister" onclick="switchAuthTab('register')">
+                    <i class="bi bi-person-plus-fill"></i> Register / Create
+                </button>
+            </div>
+
+            <!-- ==============================================
+                 FIXED FORMS VIEWPORT (STRICTLY STATIC BOX SIZE)
+                 ============================================== -->
+            <div class="auth-forms-viewport">
+
+                <!-- OPTION 1: LOGIN FORM (Perfect Alignment Inside Box) -->
+                <div id="loginFormContainer" class="auth-form-tab {% if active_tab == 'register' %}d-none{% endif %}">
+                    <form method="POST" action="{{ url_for('auth.login') }}" id="loginForm" class="auth-login-balanced">
+                        <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+
+                        <div class="mb-3">
+                            <label for="loginIdentifier" class="auth-label">
+                                <i class="bi bi-person-fill"></i> Username or Email
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="bi bi-envelope auth-input-icon"></i>
+                                <input type="text" class="form-control auth-input" id="loginIdentifier" name="identifier" value="{{ identifier|default('') }}" placeholder="Username or email address" required autocomplete="username">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="loginPassword" class="auth-label">
+                                <i class="bi bi-lock-fill"></i> Password
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="bi bi-key auth-input-icon"></i>
+                                <input type="password" class="form-control auth-input" id="loginPassword" name="password" placeholder="Enter password" required autocomplete="current-password">
+                                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('loginPassword', this)" title="Show/Hide Password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3 pt-1">
+                            <label class="auth-remember-item auth-subtext" for="rememberMe">
+                                <input type="checkbox" id="rememberMe" name="remember" checked>
+                                <span>Remember</span>
+                            </label>
+                            <a href="javascript:void(0)" onclick="switchAuthTab('register')" class="auth-white-link">
+                                Create account &rarr;
+                            </a>
+                        </div>
+
+                        <button type="submit" class="btn btn-auth-glass w-100 py-2 fs-6 fw-bold d-flex align-items-center justify-content-center gap-2" id="loginSubmitBtn">
+                            <i class="bi bi-box-arrow-in-right"></i> Sign In to Platform
+                        </button>
+                    </form>
+                </div>
+
+                <!-- OPTION 2: REGISTER FORM -->
+                <div id="registerFormContainer" class="auth-form-tab {% if active_tab != 'register' %}d-none{% endif %}">
+                    <form method="POST" action="{{ url_for('auth.register') }}" id="registerForm">
+                        
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label for="regFullName" class="auth-label">
+                                    <i class="bi bi-card-heading"></i> Full Name
+                                </label>
+                                <div class="auth-input-group">
+                                    <i class="bi bi-person auth-input-icon"></i>
+                                    <input type="text" class="form-control auth-input auth-input-sm" id="regFullName" name="full_name" value="{{ full_name|default('') }}" placeholder="Dr. Aarav Patel" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="regUsername" class="auth-label">
+                                    <i class="bi bi-at"></i> Username
+                                </label>
+                                <div class="auth-input-group">
+                                    <i class="bi bi-person-badge auth-input-icon"></i>
+                                    <input type="text" class="form-control auth-input auth-input-sm" id="regUsername" name="username" value="{{ username|default('') }}" placeholder="aarav_analyst" required pattern="[a-zA-Z0-9_]{3,30}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="regEmail" class="auth-label">
+                                <i class="bi bi-envelope-at"></i> Official Email
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="bi bi-envelope auth-input-icon"></i>
+                                <input type="email" class="form-control auth-input auth-input-sm" id="regEmail" name="email" value="{{ email|default('') }}" placeholder="analyst@climate-center.org" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label for="regPassword" class="auth-label">
+                                    <i class="bi bi-lock-fill"></i> Password
+                                </label>
+                                <div class="auth-input-group">
+                                    <i class="bi bi-key auth-input-icon"></i>
+                                    <input type="password" class="form-control auth-input auth-input-sm" id="regPassword" name="password" placeholder="Min 6 chars" required minlength="6">
+                                    <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('regPassword', this)">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="regConfirmPassword" class="auth-label">
+                                    <i class="bi bi-check2-circle"></i> Confirm
+                                </label>
+                                <div class="auth-input-group">
+                                    <i class="bi bi-lock auth-input-icon"></i>
+                                    <input type="password" class="form-control auth-input auth-input-sm" id="regConfirmPassword" name="confirm_password" placeholder="Re-type" required minlength="6">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="auth-remember-item auth-subtext" for="regTerms">
+                                <input type="checkbox" id="regTerms" required checked>
+                                <span>I agree to the <span class="fw-bold text-decoration-underline">Platform Terms</span> and Policy.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-auth-glass w-100 py-2 fs-6 fw-bold mb-2 d-flex align-items-center justify-content-center gap-2" id="registerSubmitBtn">
+                            <i class="bi bi-person-check-fill"></i> Register / Create Account
+                        </button>
+
+                        <div class="text-center">
+                            <span class="auth-subtext">Already registered?</span>
+                            <a href="javascript:void(0)" onclick="switchAuthTab('login')" class="auth-white-link ms-1">
+                                Sign in here &rarr;
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/leaves-wind.js') }}"></script>
+<script>
+    // Tab Switching Logic between Login & Register
+    function switchAuthTab(tab) {
+        const loginContainer = document.getElementById('loginFormContainer');
+        const registerContainer = document.getElementById('registerFormContainer');
+        const tabBtnLogin = document.getElementById('tabBtnLogin');
+        const tabBtnRegister = document.getElementById('tabBtnRegister');
+        const alertBox = document.getElementById('authDynamicAlert');
+
+        if (alertBox) alertBox.classList.add('d-none');
+
+        if (tab === 'login') {
+            loginContainer.classList.remove('d-none');
+            registerContainer.classList.add('d-none');
+            tabBtnLogin.classList.add('active');
+            tabBtnRegister.classList.remove('active');
+            window.history.replaceState({}, '', '/login');
+        } else {
+            loginContainer.classList.add('d-none');
+            registerContainer.classList.remove('d-none');
+            tabBtnLogin.classList.remove('active');
+            tabBtnRegister.classList.add('active');
+            window.history.replaceState({}, '', '/register');
+        }
+    }
+
+    // Toggle Password Visibility Eye
+    function togglePasswordVisibility(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.className = 'bi bi-eye-slash';
+        } else {
+            icon.className = 'bi bi-eye';
+            input.type = 'password';
+        }
+    }
+
+    function showDynamicAlert(message, isSuccess) {
+        const alertBox = document.getElementById('authDynamicAlert');
+        const alertMsg = document.getElementById('authDynamicAlertMsg');
+        const alertIcon = document.getElementById('authDynamicAlertIcon');
+
+        if (!alertBox || !alertMsg) return;
+
+        alertMsg.innerText = message;
+        alertBox.className = 'auth-alert';
+        alertIcon.className = 'bi ' + (isSuccess ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill');
+        alertBox.classList.remove('d-none');
+    }
+
+    // Client-side Registration Validation
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function (e) {
+            const pwd = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+
+            if (pwd.length < 6) {
+                e.preventDefault();
+                showDynamicAlert('Password must be at least 6 characters long.', false);
+                return;
+            }
+
+            if (pwd !== confirm) {
+                e.preventDefault();
+                showDynamicAlert('Password and confirmation password do not match.', false);
+                return;
+            }
+
+            const regBtn = document.getElementById('registerSubmitBtn');
+            regBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Registering...';
+            regBtn.disabled = true;
+        });
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function () {
+            const loginBtn = document.getElementById('loginSubmitBtn');
+            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Signing in...';
+            loginBtn.disabled = true;
+        });
+    }
+</script>
+{% endblock %}
