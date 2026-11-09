@@ -4,10 +4,8 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    """First page of the app: Gateway showing Login and Register options with transparent glassmorphic UI."""
-    if session.get('user_id'):
-        return redirect(url_for('main.home'))
-    return render_template('auth.html', active_tab='login')
+    """First page of the app: Always redirect to login page first."""
+    return redirect(url_for('auth.login'))
 
 @main_bp.route('/home')
 def home():

@@ -19,7 +19,9 @@ class ClimatexTestCase(unittest.TestCase):
             '/simulator',
             '/results?location=Pune&rainfall=150&temperature=33&aqi=185&water=70&power=100',
             '/map',
-            '/reports'
+            '/reports',
+            '/home',
+            '/about'
         ]
         for route in protected_routes:
             res = self.client.get(route)
@@ -32,8 +34,12 @@ class ClimatexTestCase(unittest.TestCase):
         self.assertEqual(api_res.get_json()['status'], 'error')
 
     def test_auth_gateway_page_content(self):
-        """Verify that first page shows only Login and Register, without feature links."""
-        res = self.client.get('/')
+        """Verify that first page redirects to login, showing only Login and Register."""
+        res_root = self.client.get('/')
+        self.assertEqual(res_root.status_code, 302)
+        self.assertIn('/login', res_root.headers.get('Location', ''))
+
+        res = self.client.get('/', follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # Options present (strictly Login and Register, no slashes)
         self.assertIn(b'Login', res.data)
