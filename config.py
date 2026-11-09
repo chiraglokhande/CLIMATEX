@@ -45,7 +45,7 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = target_db
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG = False if os.environ.get('VERCEL') else True
+    DEBUG = False if os.environ.get('VERCEL') or os.environ.get('RENDER') or os.environ.get('FLASK_ENV') == 'production' else True
 
     MYSQL_CONFIG = {
         'host': mysql_host,
