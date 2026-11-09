@@ -44,6 +44,12 @@
                     <i class="bi bi-geo-alt-fill me-2"></i>
                     <span>Risk Map</span>
                 </a>
+                {% if not current_user %}
+                <a href="{{ url_for('auth.login') }}" class="btn home-trans-btn-outline">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    <span>Login / Register</span>
+                </a>
+                {% endif %}
             </div>
 
             <!-- Important Core Navigation Links (Minimal, Centered, White Text Only) -->

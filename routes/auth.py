@@ -12,8 +12,6 @@ USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,30}$")
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method in ('GET', 'HEAD'):
-        if session.get('user_id'):
-            return redirect(url_for('main.home'))
         return render_template('auth.html', active_tab='login')
 
     # Handle POST
@@ -68,8 +66,6 @@ def login():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method in ('GET', 'HEAD'):
-        if session.get('user_id'):
-            return redirect(url_for('main.home'))
         return render_template('auth.html', active_tab='register')
 
     # Handle POST
