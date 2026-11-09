@@ -63,6 +63,17 @@ def create_app(config_class=Config):
             target = request.full_path if request.query_string else request.path
             return redirect(url_for('auth.login', next=target))
 
+    # Anti-Caching & Per-Device Session Isolation: Prevent edge proxies / CDNs from caching rendered user HTML
+    @app.after_request
+    def set_cache_control_headers(response):
+        path = request.path
+        if not path.startswith('/static/') and not path.startswith('/css/') and path != '/favicon.ico':
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, private, max-age=0'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+            response.headers['Vary'] = 'Cookie, Accept-Encoding'
+        return response
+
     # Global Context Processor for Authentication
     @app.context_processor
     def inject_auth_globals():

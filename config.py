@@ -12,6 +12,14 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'climatex-super-secret-key-2026-prod-ready')
     
+    # Session Cookie Security & Device Isolation
+    SESSION_COOKIE_NAME = 'climatex_session'
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Lax'
+    # Use Secure cookies if running under HTTPS (Render / production)
+    SESSION_COOKIE_SECURE = True if (os.environ.get('RENDER') or os.environ.get('VERCEL') or os.environ.get('FLASK_ENV') == 'production') else False
+    PERMANENT_SESSION_LIFETIME = 86400  # 24 hours
+    
     # In Vercel / serverless environments, the filesystem is read-only except /tmp
     if os.environ.get('VERCEL') or os.environ.get('AWS_LAMBDA_FUNCTION_NAME'):
         default_db = 'sqlite:////tmp/climatex.db'
