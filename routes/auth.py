@@ -13,7 +13,7 @@ USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,30}$")
 def login():
     if request.method in ('GET', 'HEAD'):
         if session.get('user_id'):
-            return redirect(url_for('dashboard.dashboard'))
+            return redirect(url_for('main.home'))
         return render_template('auth.html', active_tab='login')
 
     # Handle POST
@@ -22,7 +22,8 @@ def login():
 
     identifier = (data.get('identifier') or data.get('username') or data.get('email') or '').strip()
     password = data.get('password', '')
-    next_url = data.get('next') or request.args.get('next') or url_for('dashboard.dashboard')
+    req_next = data.get('next') or request.args.get('next')
+    next_url = req_next if (req_next and req_next not in ['/dashboard', url_for('dashboard.dashboard')]) else url_for('main.home')
 
     if not identifier or not password:
         msg = "Please enter your username/email and password."
@@ -68,7 +69,7 @@ def login():
 def register():
     if request.method in ('GET', 'HEAD'):
         if session.get('user_id'):
-            return redirect(url_for('dashboard.dashboard'))
+            return redirect(url_for('main.home'))
         return render_template('auth.html', active_tab='register')
 
     # Handle POST
@@ -144,10 +145,10 @@ def register():
 
         msg = f"Account registered successfully in database! Welcome to CLIMATEX, {new_user.full_name}."
         if is_json:
-            return jsonify({'status': 'success', 'message': msg, 'redirect': url_for('dashboard.dashboard'), 'user': new_user.to_dict()})
+            return jsonify({'status': 'success', 'message': msg, 'redirect': url_for('main.home'), 'user': new_user.to_dict()})
 
         flash(msg, 'success')
-        return redirect(url_for('dashboard.dashboard'))
+        return redirect(url_for('main.home'))
 
     except Exception as e:
         db.session.rollback()
@@ -188,10 +189,10 @@ def demo_login():
 
     msg = f"Signed in as Benchmark Analyst: {demo_user.full_name} ({demo_user.role})."
     if request.is_json:
-        return jsonify({'status': 'success', 'message': msg, 'redirect': url_for('dashboard.dashboard'), 'user': demo_user.to_dict()})
+        return jsonify({'status': 'success', 'message': msg, 'redirect': url_for('main.home'), 'user': demo_user.to_dict()})
 
     flash(msg, 'success')
-    return redirect(url_for('dashboard.dashboard'))
+    return redirect(url_for('main.home'))
 
 @auth_bp.route('/logout')
 def logout():

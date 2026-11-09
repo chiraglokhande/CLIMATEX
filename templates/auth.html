@@ -4,6 +4,8 @@
 
 {% block body_class %}home-page-bg auth-standalone-page{% endblock %}
 
+{% block navbar %}{% endblock %}
+
 {% block extra_head %}
 <style>
 /* ==========================================================
@@ -13,19 +15,20 @@
    Pixel-Perfect Alignment for Login & Register
    ========================================================== */
 
-/* 100% Completely Transparent Top Nav (Zero Blur) */
-.auth-nav-transparent,
-.climatex-nav.auth-nav-transparent,
-body.home-page-bg .climatex-nav.auth-nav-transparent {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding-top: 1.1rem !important;
-    padding-bottom: 0.25rem !important;
+/* Top Left Brand for Auth */
+.auth-brand-corner {
+    position: fixed;
+    top: 22px;
+    left: 28px;
+    z-index: 40;
+}
+
+/* Top Right Theme Toggle for Auth */
+.auth-theme-corner {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 40;
 }
 
 /* App Name: NO Capsule, NOT Black in Light Mode, Pure WHITE in Both Modes */
@@ -51,7 +54,7 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 [data-theme="light"] .climatex-brand-name,
 [data-theme="light"] .navbar-brand span,
 [data-theme="light"] .navbar-brand {
-    color: #FFFFFF !important; /* Pure WHITE in light mode too - NOT black, NOT in capsule */
+    color: #FFFFFF !important; /* Pure WHITE in light mode too */
     background: transparent !important;
     border: none !important;
     border-radius: 0 !important;
@@ -72,15 +75,16 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     z-index: 30 !important;
 }
 
-/* Center Viewport Alignment */
+/* Center Viewport Alignment - Full 100vh without navbar */
 .auth-center-wrapper {
-    min-height: calc(100vh - 76px);
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     position: relative;
-    z-index: 5;
+    z-index: 35;
 }
 
 /* Static Modal Card Box (Strictly Locked Size) */
@@ -99,12 +103,12 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background: rgba(6, 12, 22, 0.46) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    background: transparent !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 18px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+    box-shadow: none !important;
     padding: 1.45rem 1.65rem;
     position: relative;
     z-index: 5;
@@ -112,34 +116,35 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 [data-theme="light"] .auth-glass-card {
-    background: rgba(255, 255, 255, 0.55) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.85) !important;
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+    background: transparent !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.25) !important;
+    box-shadow: none !important;
 }
 
 /* Segmented Switcher */
 .auth-switch-container {
-    background: rgba(255, 255, 255, 0.10);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     border-radius: var(--radius-full);
     padding: 3px;
     display: flex;
     position: relative;
     flex-shrink: 0;
+    box-shadow: none !important;
 }
 
 [data-theme="light"] .auth-switch-container {
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.25) !important;
 }
 
 .auth-switch-btn {
     flex: 1;
-    border: none;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid transparent;
+    background: transparent !important;
+    color: #FFFFFF !important;
     font-weight: 600;
     font-size: 0.88rem;
     padding: 7px 12px;
@@ -154,35 +159,39 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 .auth-switch-btn:hover {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 [data-theme="light"] .auth-switch-btn {
-    color: #475569;
-    text-shadow: none;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 [data-theme="light"] .auth-switch-btn:hover {
-    color: #0F172A;
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.35);
 }
 
 /* Dark Mode Active Tab */
 .auth-switch-btn.active {
-    background: rgba(255, 255, 255, 0.26) !important;
+    background: transparent !important;
     color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.45) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25) !important;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    font-weight: 700;
 }
 
-/* Light Mode Active Tab: Soft Light Gray (NO dark effect) */
+/* Light Mode Active Tab: Bold dark text, crisp border, transparent */
 [data-theme="light"] .auth-switch-btn.active {
-    background: rgba(241, 245, 249, 0.92) !important;
-    color: #1E293B !important;
-    border: 1px solid rgba(203, 213, 225, 0.95) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    text-shadow: none;
-    font-weight: 700;
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1.5px solid #000000 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12) !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+    font-weight: 800;
 }
 
 /* Forms Viewport: Strictly Static and Vertically Centered */
@@ -295,21 +304,21 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 }
 
 [data-theme="light"] .auth-input {
-    background: rgba(255, 255, 255, 0.75) !important;
-    border: 1px solid rgba(15, 23, 42, 0.25) !important;
-    color: #0F172A !important;
-    font-weight: 600;
+    background: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.35) !important;
+    color: #000000 !important;
+    font-weight: 700;
 }
 
 [data-theme="light"] .auth-input::placeholder {
-    color: rgba(15, 23, 42, 0.6) !important;
-    font-weight: 450;
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-weight: 500;
 }
 
 [data-theme="light"] .auth-input:focus {
-    background: #FFFFFF !important;
-    border-color: #0F172A !important;
-    box-shadow: 0 0 12px rgba(15, 23, 42, 0.2) !important;
+    background: transparent !important;
+    border-color: #000000 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Compact register inputs */
@@ -400,42 +409,43 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
     cursor: pointer;
 }
 
-/* Buttons (Dark Mode: Glass Frosted White) */
+/* Buttons (Dark Mode: Completely Transparent) */
 .btn-auth-glass {
     height: 40px;
-    background: rgba(255, 255, 255, 0.22) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3) !important;
+    background: transparent !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25) !important;
     color: #FFFFFF !important;
     border-radius: 9px;
     transition: all 0.22s ease;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     font-size: 0.92rem;
     font-weight: 700;
 }
 
 .btn-auth-glass:hover {
-    background: rgba(255, 255, 255, 0.34) !important;
-    border-color: rgba(255, 255, 255, 0.8) !important;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4) !important;
+    background: transparent !important;
+    border-color: #FFFFFF !important;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.5) !important;
     color: #FFFFFF !important;
     transform: translateY(-1px);
 }
 
-/* Buttons (Light Mode: Soft Light Gray, NO harsh dark) */
+/* Buttons (Light Mode: Bold Black, Completely Transparent) */
 [data-theme="light"] .btn-auth-glass {
-    background: rgba(241, 245, 249, 0.92) !important;
-    border: 1px solid rgba(203, 213, 225, 0.95) !important;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08) !important;
-    color: #1E293B !important;
-    font-weight: 700;
-    text-shadow: none;
+    background: transparent !important;
+    border: 1.5px solid #000000 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12) !important;
+    color: #000000 !important;
+    font-weight: 800;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 [data-theme="light"] .btn-auth-glass:hover {
-    background: #E2E8F0 !important;
-    border-color: #94A3B8 !important;
-    color: #0F172A !important;
+    background: transparent !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Alert Box */
@@ -471,7 +481,21 @@ body.home-page-bg .climatex-nav.auth-nav-transparent {
 <!-- Ambient Dynamic Wind & Moving Leaves Canvas -->
 <canvas id="leavesWindCanvas" class="leaves-wind-canvas" aria-hidden="true"></canvas>
 
-<!-- Perfectly Sized & Centered Single-Focus Authentication Card (No Header / Logo) -->
+<!-- Top Left Brand for Login & Register -->
+<div class="auth-brand-corner">
+    <a href="{{ url_for('main.home') }}" class="text-decoration-none d-inline-block" title="CLIMATEX Home">
+        <span class="climatex-brand-name">CLIMATEX</span>
+    </a>
+</div>
+
+<!-- Top Right Theme Switcher for Standalone Auth Page -->
+<div class="auth-theme-corner">
+    <button class="theme-toggle-btn rounded-pill shadow-sm" id="authThemeToggleBtn" type="button" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+        <i class="bi bi-moon-stars-fill" id="authThemeToggleIcon"></i>
+    </button>
+</div>
+
+<!-- Perfectly Centered Single-Focus Authentication Screen -->
 <div class="auth-center-wrapper">
     <div class="auth-center-card-box">
         

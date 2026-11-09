@@ -19,9 +19,7 @@ class ClimatexTestCase(unittest.TestCase):
             '/simulator',
             '/results?location=Pune&rainfall=150&temperature=33&aqi=185&water=70&power=100',
             '/map',
-            '/reports',
-            '/home',
-            '/about'
+            '/reports'
         ]
         for route in protected_routes:
             res = self.client.get(route)

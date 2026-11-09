@@ -11,3 +11,5 @@ __pycache__/
 .env
 .env.*
 !.env.example
+/Animate_nighttime_forest_loop_*.mp4
+

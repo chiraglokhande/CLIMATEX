@@ -28,6 +28,8 @@ def create_app(config_class=Config):
     def enforce_feature_login():
         public_endpoints = {
             'main.index',
+            'main.home',
+            'main.about',
             'auth.login',
             'auth.register',
             'auth.demo_login',
@@ -46,7 +48,7 @@ def create_app(config_class=Config):
             path.startswith('/static/') or
             path.startswith('/css/') or
             path == '/favicon.ico' or
-            path in ('/', '/login', '/register', '/demo-login', '/logout')
+            path in ('/', '/home', '/about', '/login', '/register', '/demo-login', '/logout')
         ):
             return None
 
