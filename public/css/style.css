@@ -58,14 +58,14 @@
 
 [data-theme="light"] {
     --bg-main: transparent;
-    --bg-surface: rgba(255, 255, 255, 0.80);
-    --bg-surface-elevated: rgba(255, 255, 255, 0.90);
-    --bg-card: rgba(255, 255, 255, 0.80);
-    --bg-box: rgba(255, 255, 255, 0.80);
-    --bg-box-subtle: rgba(241, 245, 249, 0.85);
-    --bg-nav: rgba(255, 255, 255, 0.82);
-    --bg-input: rgba(255, 255, 255, 0.88);
-    --border-color: rgba(255, 255, 255, 0.90);
+    --bg-surface: rgba(255, 255, 255, 0.88);
+    --bg-surface-elevated: rgba(255, 255, 255, 0.94);
+    --bg-card: rgba(255, 255, 255, 0.88);
+    --bg-box: rgba(255, 255, 255, 0.88);
+    --bg-box-subtle: rgba(241, 245, 249, 0.92);
+    --bg-nav: rgba(255, 255, 255, 0.90);
+    --bg-input: rgba(255, 255, 255, 0.92);
+    --border-color: rgba(255, 255, 255, 0.95);
     --border-hover: rgba(0, 0, 0, 0.15);
     
     /* Primary Environment Accents */
@@ -82,7 +82,7 @@
     
     /* Text Hierarchy - Clean slate deep navy contrast */
     --text-primary: #0F172A;
-    --text-secondary: #475569;
+    --text-secondary: #334155;
     --text-muted: #64748B;
     --heading-color: #0F172A;
     
@@ -351,7 +351,7 @@ body.home-page-bg .climatex-nav:not(.auth-nav-transparent) {
 
 .home-trans-headline {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5.8vw, 4.4rem);
+    font-size: clamp(1.75rem, 6.5vw, 4.4rem);
     font-weight: 900;
     line-height: 1.15;
     letter-spacing: -0.03em;
@@ -462,9 +462,9 @@ body.user-authenticated .climatex-card,
 [data-theme="light"] body.nav-page .climatex-card,
 [data-theme="light"] body.user-authenticated .climatex-card,
 [data-theme="light"] .climatex-card {
-    background: rgba(255, 255, 255, 0.80) !important;
-    backdrop-filter: blur(18px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
 }
@@ -1054,7 +1054,7 @@ a:hover {
 /* Dropdown Menu in Dark Mode */
 .dropdown-menu,
 .dropdown-menu-dark {
-    background: rgba(15, 23, 42, 0.92) !important;
+    background: rgba(15, 23, 42, 0.94) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -1074,32 +1074,116 @@ a:hover {
     color: #FFFFFF !important;
 }
 
+.dropdown-user-name {
+    color: #FFFFFF !important;
+}
+
+.navbar-toggler {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 12px;
+    padding: 0.35rem 0.6rem !important;
+    color: #FFFFFF !important;
+    transition: var(--transition-smooth);
+    min-height: 42px;
+}
+
+.navbar-toggler i {
+    color: #FFFFFF !important;
+}
+
+[data-theme="light"] .navbar-toggler {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    color: #0F172A !important;
+}
+
+[data-theme="light"] .navbar-toggler i {
+    color: #0F172A !important;
+}
+
 /* Mobile responsive handling for dock navbar */
 @media (max-width: 991.98px) {
+    .climatex-nav-dock-wrapper {
+        position: sticky;
+        top: 0.65rem;
+        padding: 0 0.75rem;
+        pointer-events: auto;
+    }
+
+    .climatex-nav-dock-wrapper .container-fluid {
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 20px;
+        padding: 0.55rem 1rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.40);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        flex-wrap: wrap;
+    }
+
+    [data-theme="light"] .climatex-nav-dock-wrapper .container-fluid {
+        background: rgba(255, 255, 255, 0.92) !important;
+        border: 1px solid rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10) !important;
+    }
+
+    [data-theme="light"] .climatex-nav-dock-wrapper .climatex-brand-name {
+        color: #0F172A !important;
+        text-shadow: none !important;
+    }
+
     .climatex-nav.climatex-dock-nav {
-        border-radius: 24px !important;
-        padding: 0.5rem 0.85rem !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: auto !important;
+        max-width: 100% !important;
+    }
+
+    .climatex-dock-inner {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
     }
 
     .climatex-dock-nav .navbar-collapse {
-        background: rgba(15, 23, 42, 0.95) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 20px;
-        padding: 1rem;
-        margin-top: 0.5rem;
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+        width: 100%;
+        background: transparent !important;
+        border: none !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 0 !important;
+        padding: 0.85rem 0 0.25rem 0 !important;
+        margin-top: 0.65rem !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    [data-theme="light"] .climatex-dock-nav .navbar-collapse {
+        border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
     }
 
     .climatex-dock-nav .navbar-nav {
-        gap: 0.25rem !important;
+        gap: 0.35rem !important;
+        width: 100%;
         align-items: stretch !important;
     }
 
     .climatex-dock-nav .nav-link {
         width: 100%;
+        padding: 0.65rem 1rem !important;
         border-radius: 12px !important;
+        font-size: 0.95rem !important;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
 
     .climatex-dock-nav .nav-link.active {
@@ -1107,14 +1191,35 @@ a:hover {
     }
 
     .climatex-dock-nav .dock-actions {
-        margin-top: 0.5rem;
-        flex-wrap: wrap;
+        margin-top: 0.75rem !important;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    [data-theme="light"] .climatex-dock-nav .dock-actions {
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .climatex-dock-nav .dock-actions .theme-toggle-btn,
+    .climatex-dock-nav .dock-actions .nav-user-pill,
+    .climatex-dock-nav .dock-actions .btn-say-hello {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+        border-radius: 12px !important;
+        display: flex;
+        align-items: center;
     }
 }
 
 /* Light Theme Adaptations for Dock Navbar - Clean, Elegant, Balanced */
 [data-theme="light"] .climatex-nav.climatex-dock-nav {
-    background: rgba(255, 255, 255, 0.82) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
     border: 1px solid rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
     backdrop-filter: blur(24px) saturate(180%) !important;
@@ -1214,10 +1319,10 @@ a:hover {
 
 [data-theme="light"] .dropdown-menu,
 [data-theme="light"] .dropdown-menu-dark {
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
     border-radius: 14px !important;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12) !important;
 }
@@ -1233,12 +1338,8 @@ a:hover {
     color: #0F172A !important;
 }
 
-@media (max-width: 991.98px) {
-    [data-theme="light"] .climatex-dock-nav .navbar-collapse {
-        background: rgba(255, 255, 255, 0.95) !important;
-        border: 1px solid rgba(0, 0, 0, 0.1) !important;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12) !important;
-    }
+[data-theme="light"] .dropdown-user-name {
+    color: #0F172A !important;
 }
 
 /* Buttons */
@@ -1660,11 +1761,11 @@ a:hover {
 
 /* Cards & containers in light mode - Luminous High-Clarity Frosted Glass */
 [data-theme="light"] .climatex-card {
-    background: rgba(255, 255, 255, 0.80) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
     border: 1px solid rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
-    backdrop-filter: blur(18px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
 [data-theme="light"] .climatex-card h1,
@@ -1672,14 +1773,24 @@ a:hover {
 [data-theme="light"] .climatex-card h3,
 [data-theme="light"] .climatex-card h4,
 [data-theme="light"] .climatex-card h5,
-[data-theme="light"] .climatex-card h6 {
+[data-theme="light"] .climatex-card h6,
+[data-theme="light"] .climatex-card .fw-bold.text-white,
+[data-theme="light"] .climatex-card h5.text-white {
     color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
     text-shadow: none !important;
 }
 
 [data-theme="light"] .climatex-card .text-secondary {
     color: #475569 !important;
     text-shadow: none !important;
+}
+
+[data-theme="light"] .climatex-card .badge.bg-secondary {
+    background: #F1F5F9 !important;
+    color: #334155 !important;
+    border: 1px solid #CBD5E1 !important;
+    font-weight: 600 !important;
 }
 
 /* Metric Cards in light mode */
@@ -1708,15 +1819,15 @@ a:hover {
 
 /* Status Strip and inner boxes in light mode */
 [data-theme="light"] .theme-box {
-    background: rgba(255, 255, 255, 0.80) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
     border: 1px solid rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08) !important;
-    backdrop-filter: blur(18px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
 }
 [data-theme="light"] .theme-box-subtle {
-    background: rgba(241, 245, 249, 0.85) !important;
-    border: 1px solid rgba(203, 213, 225, 0.6) !important;
+    background: rgba(241, 245, 249, 0.92) !important;
+    border: 1px solid rgba(203, 213, 225, 0.7) !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
     border-radius: 10px !important;
 }
@@ -2453,7 +2564,37 @@ a:hover {
     background: rgba(34, 197, 94, 0.10) !important;
     border-left-color: #16A34A !important;
 }
-[data-theme="light"] .navbar-toggler i {
-    color: #000000 !important;
+[data-theme="light"] .navbar-toggler i,
+[data-theme="light"] .navbar-toggler-icon-custom {
+    color: #0F172A !important;
+}
+
+/* ----------------------------------------------------------
+   Ultra-Wide Displays (min-width: 1440px)
+   ---------------------------------------------------------- */
+@media (min-width: 1440px) {
+    .container-fluid.px-lg-4,
+    .home-center-viewport .container {
+        max-width: 1560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ----------------------------------------------------------
+   Universal Touch Screen & Accessibility Optimizations
+   ---------------------------------------------------------- */
+@media (pointer: coarse) {
+    .nav-link,
+    .btn,
+    .form-select,
+    .theme-toggle-btn {
+        min-height: 44px;
+    }
+
+    .form-range::-webkit-slider-thumb {
+        width: 26px;
+        height: 26px;
+    }
 }
 

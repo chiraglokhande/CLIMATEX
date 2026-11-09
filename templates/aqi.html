@@ -228,8 +228,19 @@
 
     const aqiData = {{ aqi_data|tojson }};
 
+    function getAqiChartThemeColors() {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        return {
+            tickColor: isLight ? '#334155' : '#CBD5E1',
+            gridColor: isLight ? 'rgba(0, 0, 0, 0.07)' : 'rgba(255, 255, 255, 0.07)',
+            legendColor: isLight ? '#0F172A' : '#E2E8F0'
+        };
+    }
+
+    let aqiColors = getAqiChartThemeColors();
+
     // 1. Pollutant Bar Chart
-    new Chart(document.getElementById('pollutantBarChart'), {
+    const pollutantChart = new Chart(document.getElementById('pollutantBarChart'), {
         type: 'bar',
         data: {
             labels: ['PM2.5', 'PM10', 'NO2', 'SO2', 'CO (x10)', 'O3'],
@@ -254,8 +265,8 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                y: { grid: { color: aqiColors.gridColor }, ticks: { color: aqiColors.tickColor, font: { weight: '600' } } },
+                x: { grid: { color: aqiColors.gridColor }, ticks: { color: aqiColors.tickColor, font: { weight: '600' } } }
             }
         }
     });
@@ -267,7 +278,7 @@
     const pm10Vals = history.map(h => h.pm10);
     const aqiVals = history.map(h => h.aqi);
 
-    new Chart(document.getElementById('multiPollutantChart'), {
+    const multiChart = new Chart(document.getElementById('multiPollutantChart'), {
         type: 'line',
         data: {
             labels: histDates,
@@ -303,14 +314,30 @@
             plugins: {
                 legend: {
                     position: 'top',
-                    labels: { color: '#94A3B8', boxWidth: 12 }
+                    labels: { color: aqiColors.legendColor, boxWidth: 12, font: { weight: '600' } }
                 }
             },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                y: { grid: { color: aqiColors.gridColor }, ticks: { color: aqiColors.tickColor, font: { weight: '600' } } },
+                x: { grid: { color: aqiColors.gridColor }, ticks: { color: aqiColors.tickColor, font: { weight: '600' } } }
             }
         }
+    });
+
+    window.addEventListener('climatexThemeChanged', function() {
+        const updated = getAqiChartThemeColors();
+        [pollutantChart, multiChart].forEach(chart => {
+            if (chart && chart.options && chart.options.scales) {
+                chart.options.scales.x.ticks.color = updated.tickColor;
+                chart.options.scales.y.ticks.color = updated.tickColor;
+                chart.options.scales.x.grid.color = updated.gridColor;
+                chart.options.scales.y.grid.color = updated.gridColor;
+                if (chart.options.plugins && chart.options.plugins.legend) {
+                    chart.options.plugins.legend.labels.color = updated.legendColor;
+                }
+                chart.update();
+            }
+        });
     });
 
     // 3. Hotspot Mini Leaflet Map

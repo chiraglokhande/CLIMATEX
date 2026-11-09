@@ -237,8 +237,18 @@
     const dates = aqiHistory.map(h => h.date.substring(5));
     const aqiVals = aqiHistory.map(h => h.aqi);
 
+    function getChartThemeColors() {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        return {
+            tickColor: isLight ? '#334155' : '#CBD5E1',
+            gridColor: isLight ? 'rgba(0, 0, 0, 0.07)' : 'rgba(255, 255, 255, 0.07)'
+        };
+    }
+
+    let colors = getChartThemeColors();
+
     // AQI Chart
-    new Chart(document.getElementById('aqiTrendChart'), {
+    const aqiChart = new Chart(document.getElementById('aqiTrendChart'), {
         type: 'line',
         data: {
             labels: dates,
@@ -258,14 +268,14 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                y: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } },
+                x: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } }
             }
         }
     });
 
     // Temp Chart
-    new Chart(document.getElementById('tempTrendChart'), {
+    const tempChart = new Chart(document.getElementById('tempTrendChart'), {
         type: 'line',
         data: {
             labels: weatherData.dates || dates,
@@ -285,14 +295,14 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                y: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } },
+                x: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } }
             }
         }
     });
 
     // Rain Chart
-    new Chart(document.getElementById('rainTrendChart'), {
+    const rainChart = new Chart(document.getElementById('rainTrendChart'), {
         type: 'bar',
         data: {
             labels: weatherData.dates || dates,
@@ -308,10 +318,24 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } },
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                y: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } },
+                x: { grid: { color: colors.gridColor }, ticks: { color: colors.tickColor, font: { weight: '600' } } }
             }
         }
+    });
+
+    // Listen for theme switch to dynamically update chart colors
+    window.addEventListener('climatexThemeChanged', function() {
+        const updated = getChartThemeColors();
+        [aqiChart, tempChart, rainChart].forEach(chart => {
+            if (chart && chart.options && chart.options.scales) {
+                chart.options.scales.x.ticks.color = updated.tickColor;
+                chart.options.scales.y.ticks.color = updated.tickColor;
+                chart.options.scales.x.grid.color = updated.gridColor;
+                chart.options.scales.y.grid.color = updated.gridColor;
+                chart.update();
+            }
+        });
     });
 </script>
 {% endblock %}

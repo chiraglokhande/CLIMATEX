@@ -21,9 +21,9 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css?v=3.6">
-    <link rel="stylesheet" href="/css/style.css?v=3.6">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.6">
+    <link rel="stylesheet" href="/static/css/style.css?v=3.7">
+    <link rel="stylesheet" href="/css/style.css?v=3.7">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.7">
 
     {% block extra_head %}{% endblock %}
 </head>
@@ -54,8 +54,8 @@
             <!-- Floating Pill Dock (Options only, exactly like reference) -->
             <nav class="navbar navbar-expand-lg climatex-nav climatex-dock-nav mx-auto">
                 <div class="climatex-dock-inner d-flex align-items-center">
-                    <button class="navbar-toggler text-white border-0 py-1 px-2 me-2 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="bi bi-list fs-4 text-white"></i>
+                    <button class="navbar-toggler border-0 py-1 px-2 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi bi-list fs-3 navbar-toggler-icon-custom"></i>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarContent">
@@ -74,7 +74,7 @@
                                 <a class="nav-link dropdown-toggle {% if 'aqi' in request.path %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     AQI
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
+                                <ul class="dropdown-menu">
                                     <li><a class="dropdown-item py-2" href="{{ url_for('aqi.aqi_monitoring') if current_user else url_for('auth.login') }}"><i class="bi bi-speedometer2 me-2 text-info"></i> AQI Monitoring</a></li>
                                     <li><a class="dropdown-item py-2" href="{{ url_for('aqi.aqi_solutions') if current_user else url_for('auth.login') }}"><i class="bi bi-lightbulb-fill me-2 text-warning"></i> AQI Solutions</a></li>
                                 </ul>
@@ -116,9 +116,9 @@
                                     <span class="small fw-semibold d-none d-sm-inline">{{ current_user.username }}</span>
                                     <i class="bi bi-chevron-down small opacity-75"></i>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-lg mt-2">
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg mt-2">
                                     <li class="px-3 py-2 border-bottom border-secondary border-opacity-25">
-                                        <div class="fw-bold text-white small">{{ current_user.full_name or current_user.username }}</div>
+                                        <div class="fw-bold dropdown-user-name small">{{ current_user.full_name or current_user.username }}</div>
                                         <div class="text-secondary small text-truncate">{{ current_user.email }}</div>
                                         <div class="badge bg-secondary mt-1 small">{{ current_user.role }}</div>
                                     </li>
@@ -225,6 +225,7 @@
                 document.documentElement.setAttribute('data-theme', nextTheme);
                 localStorage.setItem('climatex_theme', nextTheme);
                 updateThemeUI(nextTheme);
+                window.dispatchEvent(new CustomEvent('climatexThemeChanged', { detail: { theme: nextTheme } }));
             });
         });
     </script>
